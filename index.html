@@ -188,7 +188,6 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
       <p>California International Marathon · December 6, 2026</p>
       <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
         <span class="goal-chip">Goal: 2:59:59</span>
-        <span class="goal-chip">PR: 3:29:00 (NYC 2024)</span>
         <span class="goal-chip" id="dash-phase-chip">Phase: Base Building</span>
       </div>
     </div>
@@ -226,6 +225,46 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
     </div>
   </div>
 
+    <div class="card" style="margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div>
+        <span id="week-title" style="font-size:17px;font-weight:600">Week 6 · Base Phase</span>
+        <span id="week-badge" class="badge badge-green" style="margin-left:8px">Base Building</span>
+      </div>
+      <div style="font-size:13px;color:var(--muted)" id="week-mileage">Target: 42 miles · Key: Tempo + Long Run</div>
+    </div>
+    <div style="margin-top:8px;font-size:13px;color:var(--slate)" id="week-focus">Focus: Building aerobic base with moderate intensity. Keep easy runs truly easy (7:50–8:30/mi).</div>
+  </div>
+  <div class="week-grid" id="week-grid"></div>
+  <div class="card" id="workout-detail" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px">
+      <div>
+        <h3 id="wd-title">Workout Detail</h3>
+        <div id="wd-meta" style="font-size:13px;color:var(--muted)"></div>
+      </div>
+      <button class="btn btn-green" onclick="markDone()" id="mark-done-btn">Mark Complete</button>
+    </div>
+    <div id="wd-desc" style="margin-top:10px;font-size:14px;line-height:1.7"></div>
+    <div id="wd-coaching" style="margin-top:12px"></div>
+  </div>
+  <div class="card">
+        <h3>This Week's Key Sessions</h3>
+        <div style="border-left:3px solid var(--amber);padding-left:10px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:600">Wednesday · Tempo Run</div>
+          <div style="font-size:12px;color:var(--muted)">2mi WU + 5mi @ 6:45/mi + 2mi CD</div>
+          <span class="badge badge-amber">Key Workout</span>
+        </div>
+        <div style="border-left:3px solid var(--blue);padding-left:10px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:600">Saturday · Long Run</div>
+          <div style="font-size:12px;color:var(--muted)">16 miles @ 7:45–8:15/mi easy</div>
+          <span class="badge badge-blue">Long Run</span>
+        </div>
+        <div style="border-left:3px solid var(--slate);padding-left:10px">
+          <div style="font-size:13px;font-weight:600">Thursday · Strength</div>
+          <div style="font-size:12px;color:var(--muted)">45 min gym: single-leg, hip strength</div>
+          <span class="badge badge-gray">Cross Train</span>
+        </div>
+      </div>
   <div id="quote-card" style="background:#0f172a;border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;position:relative;overflow:hidden">
     <div style="position:absolute;top:-10px;right:16px;font-size:80px;color:rgba(76,175,114,0.12);font-family:Georgia,serif;line-height:1;pointer-events:none">"</div>
     <div id="quote-text" style="font-size:15px;color:#e2f5ea;line-height:1.65;font-style:italic;font-family:'Fraunces',serif;margin-bottom:10px">Loading today's quote...</div>
@@ -288,24 +327,6 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
         </div>
         <div class="prog-wrap"><div class="prog-fill" style="width:15%;background:linear-gradient(90deg,var(--green-m),var(--green))"></div></div>
         <div style="font-size:12px;color:var(--muted);font-family:var(--fm)"><span id="progress-label">Week 1 of 40 · 3% complete</span></div>
-      </div>
-      <div class="card">
-        <h3>This Week's Key Sessions</h3>
-        <div style="border-left:3px solid var(--amber);padding-left:10px;margin-bottom:10px">
-          <div style="font-size:13px;font-weight:600">Wednesday · Tempo Run</div>
-          <div style="font-size:12px;color:var(--muted)">2mi WU + 5mi @ 6:45/mi + 2mi CD</div>
-          <span class="badge badge-amber">Key Workout</span>
-        </div>
-        <div style="border-left:3px solid var(--blue);padding-left:10px;margin-bottom:10px">
-          <div style="font-size:13px;font-weight:600">Saturday · Long Run</div>
-          <div style="font-size:12px;color:var(--muted)">16 miles @ 7:45–8:15/mi easy</div>
-          <span class="badge badge-blue">Long Run</span>
-        </div>
-        <div style="border-left:3px solid var(--slate);padding-left:10px">
-          <div style="font-size:13px;font-weight:600">Thursday · Strength</div>
-          <div style="font-size:12px;color:var(--muted)">45 min gym: single-leg, hip strength</div>
-          <span class="badge badge-gray">Cross Train</span>
-        </div>
       </div>
     </div>
     <div class="col" style="min-width:280px">
@@ -389,28 +410,7 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
     <div class="phase-chip" onclick="selectPhase(39)">🏆 CIM</div>
   </div>
   </div>
-  <div class="card" style="margin-bottom:10px">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
-      <div>
-        <span id="week-title" style="font-size:17px;font-weight:600">Week 6 · Base Phase</span>
-        <span id="week-badge" class="badge badge-green" style="margin-left:8px">Base Building</span>
-      </div>
-      <div style="font-size:13px;color:var(--muted)" id="week-mileage">Target: 42 miles · Key: Tempo + Long Run</div>
-    </div>
-    <div style="margin-top:8px;font-size:13px;color:var(--slate)" id="week-focus">Focus: Building aerobic base with moderate intensity. Keep easy runs truly easy (7:50–8:30/mi).</div>
-  </div>
-  <div class="week-grid" id="week-grid"></div>
-  <div class="card" id="workout-detail" style="display:none">
-    <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px">
-      <div>
-        <h3 id="wd-title">Workout Detail</h3>
-        <div id="wd-meta" style="font-size:13px;color:var(--muted)"></div>
-      </div>
-      <button class="btn btn-green" onclick="markDone()" id="mark-done-btn">Mark Complete</button>
-    </div>
-    <div id="wd-desc" style="margin-top:10px;font-size:14px;line-height:1.7"></div>
-    <div id="wd-coaching" style="margin-top:12px"></div>
-  </div>
+
 </div>
 
 <!-- ═══════════════════════════════════════════════════ ACTIVITIES -->
