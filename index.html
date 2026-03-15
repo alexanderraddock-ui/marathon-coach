@@ -176,7 +176,6 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
   <button onclick="showPage('activities')">Activities</button>
   <button onclick="showPage('races')">Races</button>
   <button onclick="showPage('nutrition')">Nutrition</button>
-  <button onclick="showPage('coach')">AI Coach</button>
   <button onclick="showPage('warmup')">Warm-ups</button>
 </nav>
 
@@ -316,7 +315,6 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
           <div class="ai-msg-header"><div class="coach-dot"></div> Coach · Today</div>
           You're starting Week 1 — the first step toward CIM. Your aerobic base is building well — Wednesday's tempo is the priority session. Your NYC 3:29 (7:59/mi) is your starting point; your goal pace at CIM is 6:52/mi — nearly 70 seconds per mile faster. That gap closes over 40 weeks of structured work. Focus on getting the long run done easy — resist the urge to push the pace.
         </div>
-        <button class="btn btn-outline" style="width:100%;font-size:13px" onclick="showPage('coach');setTimeout(()=>document.getElementById('chat-input').focus(),100)">Ask coach a question →</button>
       </div>
       <div class="card">
         <h3>Upcoming Benchmarks</h3>
@@ -348,15 +346,48 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
 <div id="page-plan" class="page">
   <h1>Training Plan</h1>
   <p class="sub">40-week structured plan · NYC 3:29 → CIM Sub-3:00</p>
-  <div class="phase-bar" id="phase-bar">
-    <div class="phase-chip active" onclick="selectPhase(0)">Week 1 (Current)</div>
-    <div class="phase-chip" onclick="selectPhase(1)">Week 3</div>
-    <div class="phase-chip" onclick="selectPhase(2)">Week 5</div>
-    <div class="phase-chip" onclick="selectPhase(3)">Week 7 (Recovery)</div>
-    <div class="phase-chip" onclick="selectPhase(4)">Week 11 (Build)</div>
-    <div class="phase-chip" onclick="selectPhase(5)">Week 15 (Peak Build)</div>
-    <div class="phase-chip" onclick="selectPhase(6)">Week 21 (Race Phase)</div>
-    <div class="phase-chip" onclick="selectPhase(7)">Week 36 (Taper)</div>
+  <div class="phase-bar" id="phase-bar" style="flex-wrap:wrap;gap:4px">
+    <div class="phase-chip active" onclick="selectPhase(0)">Wk 1</div>
+    <div class="phase-chip" onclick="selectPhase(1)">Wk 2</div>
+    <div class="phase-chip" onclick="selectPhase(2)">Wk 3</div>
+    <div class="phase-chip" onclick="selectPhase(3)">Wk 4 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(4)">Wk 5</div>
+    <div class="phase-chip" onclick="selectPhase(5)">Wk 6</div>
+    <div class="phase-chip" onclick="selectPhase(6)">Wk 7</div>
+    <div class="phase-chip" onclick="selectPhase(7)">Wk 8 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(8)">Wk 9</div>
+    <div class="phase-chip" onclick="selectPhase(9)">Wk 10</div>
+    <div class="phase-chip" onclick="selectPhase(10)">Wk 11</div>
+    <div class="phase-chip" onclick="selectPhase(11)">Wk 12 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(12)">Wk 13</div>
+    <div class="phase-chip" onclick="selectPhase(13)">Wk 14</div>
+    <div class="phase-chip" onclick="selectPhase(14)">Wk 15</div>
+    <div class="phase-chip" onclick="selectPhase(15)">Wk 16 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(16)">Wk 17</div>
+    <div class="phase-chip" onclick="selectPhase(17)">Wk 18</div>
+    <div class="phase-chip" onclick="selectPhase(18)">Wk 19</div>
+    <div class="phase-chip" onclick="selectPhase(19)">Wk 20 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(20)">Wk 21</div>
+    <div class="phase-chip" onclick="selectPhase(21)">Wk 22</div>
+    <div class="phase-chip" onclick="selectPhase(22)">Wk 23</div>
+    <div class="phase-chip" onclick="selectPhase(23)">Wk 24 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(24)">Wk 25</div>
+    <div class="phase-chip" onclick="selectPhase(25)">Wk 26</div>
+    <div class="phase-chip" onclick="selectPhase(26)">Wk 27</div>
+    <div class="phase-chip" onclick="selectPhase(27)">Wk 28 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(28)">Wk 29</div>
+    <div class="phase-chip" onclick="selectPhase(29)">Wk 30</div>
+    <div class="phase-chip" onclick="selectPhase(30)">Wk 31</div>
+    <div class="phase-chip" onclick="selectPhase(31)">Wk 32 ↓</div>
+    <div class="phase-chip" onclick="selectPhase(32)">Wk 33</div>
+    <div class="phase-chip" onclick="selectPhase(33)">Wk 34</div>
+    <div class="phase-chip" onclick="selectPhase(34)">Wk 35</div>
+    <div class="phase-chip" onclick="selectPhase(35)">Wk 36</div>
+    <div class="phase-chip" onclick="selectPhase(36)">Wk 37</div>
+    <div class="phase-chip" onclick="selectPhase(37)">Wk 38</div>
+    <div class="phase-chip" onclick="selectPhase(38)">Wk 39</div>
+    <div class="phase-chip" onclick="selectPhase(39)">🏆 CIM</div>
+  </div>
   </div>
   <div class="card" style="margin-bottom:10px">
     <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
@@ -627,139 +658,529 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
 </div>
 
 <!-- ═══════════════════════════════════════════════════ AI COACH -->
-<div id="page-coach" class="page">
-  <h1>AI Coach</h1>
-  <p class="sub">Ask anything about training, pacing, nutrition, or race strategy</p>
-  <div class="card">
-    <div class="chat-scroll" id="chat-messages">
-      <div class="ai-msg">
-        <div class="ai-msg-header"><div class="coach-dot"></div> Coach · Welcome</div>
-        Hey! I'm your AI running coach for the CIM 2026 campaign. You're targeting sub-3:00 from a 3:29 PR — that's a 29-minute improvement, which is ambitious but very achievable over 40 structured weeks. I know your plan inside out. Ask me anything: pacing, how a workout went, what to eat before a race, injury concerns, or how to adjust when life gets busy.
-      </div>
-    </div>
-    <div class="chat-input-row">
-      <input id="chat-input" class="chat-input" placeholder="Ask your coach..." onkeydown="if(event.key==='Enter')sendChat()">
-      <button class="btn btn-green" onclick="sendChat()">Send</button>
-    </div>
-  </div>
-  <div style="margin-top:4px">
-    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-family:var(--fm)">QUICK QUESTIONS</div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap">
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('What pace should my long runs be right now this week?')">Long run pace?</button>
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('How realistic is breaking 3 hours from a 3:29 PR?')">How to break 3:00?</button>
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('My legs feel really tired this week — should I skip the tempo?')">Tired legs advice</button>
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('What are the most important strength exercises for marathon runners?')">Key strength work</button>
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('How should I pace the first half at CIM to run sub-3?')">CIM race strategy</button>
-      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('What does my Yasso 800 pace need to be to break 3 hours?')">Yasso 800 target?</button>
-    </div>
-  </div>
-</div>
+
 
 <script>
 // ── Training plan data ────────────────────────────────────────────────
 const WEEKS = [
-  { title:"Week 1 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
-mileage:"Target: 55 miles · 6 days · Base building",
-focus:"High-volume base phase: 6 days, 55 miles/week building to 95+ at peak. One LT session midweek, medium-long run, and long run Sunday. Easy runs at 8:00–8:30/mi — genuinely easy. The extra volume vs a standard plan comes from longer easy runs, not more intensity.",
-days:[
-      {name:"Mon",type:"Rest + Mobility",desc:"Full rest · foam roll",rest:true,detail:"Complete rest. 15–20 min foam rolling: glutes, IT band, calves, thoracic spine.",coaching:"Rest day is training. Pfitz plans have very little rest — bank it now."},
-      {name:"Tue",type:"General Aerobic",desc:"9 mi @ 7:45–8:15/mi",key:false,detail:"9 miles general aerobic pace. Slightly harder than a recovery run but still comfortable. HR 140–155.",coaching:"Pfitz's 'general aerobic' runs are the backbone of the plan — not junk miles, not workouts. Honest aerobic effort."},
-      {name:"Wed",type:"Lactate Threshold",desc:"9 mi w/ 5 @ LT (6:35/mi)",key:true,detail:"2mi WU + 5mi @ lactate threshold pace (6:32–6:38/mi) + 2mi CD. Total: 9mi.\n\nLT pace = 15K to half marathon pace. 'Comfortably hard' — could say a few words but not a sentence. HR 160–168.",coaching:"Pfitz's cornerstone workout. LT work is the #1 predictor of marathon performance improvement."},
-      {name:"Thu",type:"Recovery + Strength A",desc:"6 mi easy + Hip & Glute",key:false,detail:"6 miles easy recovery pace (8:15–8:45/mi).\n\nStrength A · Hip & Glute Power (45 min):\nA · Hip & Glute Power (45 min)\nWarmup: 5 min bike/row + hip circles + leg swings\n1. Single-leg Romanian deadlift — 3×10 each leg (moderate DB)\n2. Bulgarian split squat — 3×10 each leg\n3. Lateral band walk — 3×20 steps each way\n4. Barbell hip thrust — 3×12\n5. Copenhagen plank — 3×20 sec each side\n6. Single-leg calf raise — 3×15 each\n7. Dead bug — 3×10 each side\nCool-down: 5 min foam roll glutes, IT band, calves",coaching:"Recovery runs between hard sessions are crucial in high-mileage Pfitz training."},
-      {name:"Fri",type:"General Aerobic",desc:"7 mi @ 7:45–8:15/mi",key:false,detail:"7 miles general aerobic.",coaching:""},
-      {name:"Sat",type:"Medium-Long Run",desc:"14 mi @ 7:45–8:15/mi",key:true,detail:"14 miles general aerobic pace. Pfitz prescribes medium-long runs on Saturdays to complement the Sunday long run. This is a key feature of the plan — not a junk run.",coaching:"The Pfitz medium-long run is what separates this plan from others. High cumulative mileage without the injury risk of two 20-milers/week."},
-      {name:"Sun",type:"Long Run",desc:"18 mi @ 8:00–8:30/mi",key:false,detail:"18 miles easy. True easy effort — HR under 145.",coaching:""}
+  { title:'Week 1 · Base Building', badge:'Base Building', badgeClass:'badge-green',
+    mileage:'Target: 35 miles · 6 days running, all easy',
+    focus:'Week 1 of base building. All runs easy. Establish the habit of 6 days/week. Keep every run truly conversational — this is the foundation everything else is built on.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles easy at 8:00–8:30/mi. These will become workout days in week 7 — for now just run easy and build the habit.',coaching:'Patience now pays off in October and November.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'5 mi + gym',key:false,rest:false,detail:'5 miles easy in the morning. Evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, Copenhagen planks, calf raises, dead bugs. This is non-negotiable for injury prevention.',coaching:'Hip and glute strength is the #1 injury prevention tool for marathon training at high mileage.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'12 mi easy',key:true,rest:false,detail:'12 miles easy. HR under 145 throughout. Practice fueling: gel every 45 min on runs over 90 minutes.\n\nStart at 8:30/mi and let effort guide you — don\'t chase pace.',coaching:'Long runs are the cornerstone of marathon fitness. Easy effort is correct, not a compromise.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 3 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
-mileage:"Target: 62 miles · 6 days",
-focus:"Mileage building toward 55–60mpw. LT session gets longer. Long run increases. Medium-long run stays as a consistent Saturday fixture.",
-days:[
-      {name:"Mon",type:"Rest + Mobility",desc:"Rest · foam roll",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"General Aerobic",desc:"10 mi general aerobic",key:false,detail:"10 miles @ 7:45–8:15/mi.",coaching:""},
-      {name:"Wed",type:"Lactate Threshold",desc:"10 mi w/ 6 @ LT",key:true,detail:"2mi WU + 6mi @ LT pace (6:32–6:38/mi) + 2mi CD. Total: 10mi.",coaching:"LT segment grows by 1 mile every 2 weeks throughout the base phase."},
-      {name:"Thu",type:"Recovery + Strength B",desc:"6 mi easy + Economy",key:false,detail:"6 miles recovery.\n\nStrength B · Running Economy:\nB · Running Economy (45 min)\nWarmup: 5 min row + ankle mobility\n1. Box jump → stick landing — 3×8\n2. Single-leg squat to bench — 3×10 each\n3. Nordic hamstring curl — 3×6 (eccentric focus, slow)\n4. Reverse lunge with knee drive — 3×10 each\n5. Pallof press — 3×12 each side\n6. Banded clamshell — 3×20 each\n7. RKC plank + side plank — 3×30 sec\nCool-down: roll thoracic spine + hip flexors",coaching:""},
-      {name:"Fri",type:"General Aerobic",desc:"8 mi general aerobic",key:false,detail:"8 miles @ 7:45–8:15/mi.",coaching:""},
-      {name:"Sat",type:"Medium-Long Run",desc:"15 mi general aerobic",key:true,detail:"15 miles general aerobic. This is a genuine workout — not a casual long run.",coaching:""},
-      {name:"Sun",type:"Long Run",desc:"20 mi easy",key:false,detail:"First 20-miler of the cycle. Easy pace throughout. Fuel every 45 minutes — start gut training now.",coaching:"20 miles is a milestone. Easy pace only — this run is about time on feet, not pace."}
+  { title:'Week 2 · Base Building', badge:'Base Building', badgeClass:'badge-green',
+    mileage:'Target: 36 miles · 6 days running, all easy',
+    focus:'Week 2 of base building. All runs easy. Establish the habit of 6 days/week. Keep every run truly conversational — this is the foundation everything else is built on.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles easy at 8:00–8:30/mi. These will become workout days in week 7 — for now just run easy and build the habit.',coaching:'Patience now pays off in October and November.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'5 mi + gym',key:false,rest:false,detail:'5 miles easy in the morning. Evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, Copenhagen planks, calf raises, dead bugs. This is non-negotiable for injury prevention.',coaching:'Hip and glute strength is the #1 injury prevention tool for marathon training at high mileage.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'13 mi easy',key:true,rest:false,detail:'13 miles easy. HR under 145 throughout. Practice fueling: gel every 45 min on runs over 90 minutes.\n\nStart at 8:30/mi and let effort guide you — don\'t chase pace.',coaching:'Long runs are the cornerstone of marathon fitness. Easy effort is correct, not a compromise.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 5 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
-mileage:"Target: 70 miles · 6 days",
-focus:"Approaching Pfitz 18/70 entry mileage. VO2max workout introduced. Pfitz recommends VO2max intervals to boost the ceiling your LT and marathon pace work can reach.",
-days:[
-      {name:"Mon",type:"Rest + Mobility",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"VO2max Intervals",desc:"10 mi w/ 5×1200m @ 5K pace",key:true,detail:"2mi WU + 5×1200m @ 5K pace (approx 5:50–6:00/mi) with 3 min jog recovery + 2mi CD. Total: ~10mi.\n\n5K pace intervals are Pfitz's VO2max stimulus — they raise your aerobic ceiling.",coaching:"VO2max work is the sharpest tool in the kit. Don't run faster than 5K pace — you're not sprinting, you're lifting your aerobic ceiling."},
-      {name:"Wed",type:"General Aerobic",desc:"10 mi general aerobic",key:false,detail:"10 miles easy-moderate.",coaching:""},
-      {name:"Thu",type:"Recovery + Strength A",desc:"7 mi easy + Hip & Glute",key:false,detail:"7 miles recovery.\n\nStrength A:\nA · Hip & Glute Power (45 min)\nWarmup: 5 min bike/row + hip circles + leg swings\n1. Single-leg Romanian deadlift — 3×10 each leg (moderate DB)\n2. Bulgarian split squat — 3×10 each leg\n3. Lateral band walk — 3×20 steps each way\n4. Barbell hip thrust — 3×12\n5. Copenhagen plank — 3×20 sec each side\n6. Single-leg calf raise — 3×15 each\n7. Dead bug — 3×10 each side\nCool-down: 5 min foam roll glutes, IT band, calves",coaching:""},
-      {name:"Fri",type:"General Aerobic",desc:"8 mi general aerobic",key:false,detail:"8 miles.",coaching:""},
-      {name:"Sat",type:"Medium-Long Run",desc:"15 mi general aerobic",key:true,detail:"15 miles general aerobic.",coaching:""},
-      {name:"Sun",type:"Long Run",desc:"20 mi w/ 10 @ MP",key:false,detail:"20 miles: first 10 easy, last 10 at marathon goal pace (6:52/mi).\n\nThis is a Pfitz-style 'long run with marathon-pace finish' — one of the hardest and most effective workouts in the cycle.",coaching:"If you can hold 6:52 for the last 10 miles of a 20-miler, you are fit for sub-3."}
+  { title:'Week 3 · Base Building', badge:'Base Building', badgeClass:'badge-green',
+    mileage:'Target: 39 miles · 6 days running, all easy',
+    focus:'Week 3 of base building. All runs easy. Establish the habit of 6 days/week. Keep every run truly conversational — this is the foundation everything else is built on.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles easy at 8:00–8:30/mi. These will become workout days in week 7 — for now just run easy and build the habit.',coaching:'Patience now pays off in October and November.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi + gym',key:false,rest:false,detail:'6 miles easy in the morning. Evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, Copenhagen planks, calf raises, dead bugs. This is non-negotiable for injury prevention.',coaching:'Hip and glute strength is the #1 injury prevention tool for marathon training at high mileage.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'13 mi easy',key:true,rest:false,detail:'13 miles easy. HR under 145 throughout. Practice fueling: gel every 45 min on runs over 90 minutes.\n\nStart at 8:30/mi and let effort guide you — don\'t chase pace.',coaching:'Long runs are the cornerstone of marathon fitness. Easy effort is correct, not a compromise.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 7 · Recovery", badge:"Recovery", badgeClass:"badge-blue",
-mileage:"Target: 45 miles · Planned down week",
-focus:"Planned 30% mileage drop at end of base block. No LT or VO2max workouts. Body adapts. You will feel flat for 2–3 days — that is normal and temporary.",
-days:[
-      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"General Aerobic",desc:"8 mi easy",key:false,detail:"8 miles easy.",coaching:""},
-      {name:"Wed",type:"General Aerobic",desc:"8 mi easy",key:false,detail:"8 miles easy — no LT workout this week.",coaching:"Recovery weeks are where the fitness from the last 10 weeks consolidates. Resist the urge to add miles."},
-      {name:"Thu",type:"Strength A",desc:"Gym only",key:false,detail:"Strength A only — no run today.\n\nA · Hip & Glute Power (45 min)\nWarmup: 5 min bike/row + hip circles + leg swings\n1. Single-leg Romanian deadlift — 3×10 each leg (moderate DB)\n2. Bulgarian split squat — 3×10 each leg\n3. Lateral band walk — 3×20 steps each way\n4. Barbell hip thrust — 3×12\n5. Copenhagen plank — 3×20 sec each side\n6. Single-leg calf raise — 3×15 each\n7. Dead bug — 3×10 each side\nCool-down: 5 min foam roll glutes, IT band, calves",coaching:""},
-      {name:"Fri",type:"General Aerobic",desc:"7 mi easy",key:false,detail:"7 miles easy.",coaching:""},
-      {name:"Sat",type:"Medium-Long",desc:"12 mi easy",key:false,detail:"12 miles easy.",coaching:""},
-      {name:"Sun",type:"Long Run",desc:"16 mi easy",key:false,detail:"16 miles easy.",coaching:""}
+  { title:'Week 4 · Base Building', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 30 miles · 6 days running, all easy',
+    focus:'Down week — mileage drops 25%. No workouts, just easy running. Your body is adapting to the new load.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles easy at 8:00–8:30/mi. These will become workout days in week 7 — for now just run easy and build the habit.',coaching:'Patience now pays off in October and November.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'4 mi + gym',key:false,rest:false,detail:'4 miles easy in the morning. Evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, Copenhagen planks, calf raises, dead bugs. This is non-negotiable for injury prevention.',coaching:'Hip and glute strength is the #1 injury prevention tool for marathon training at high mileage.'},
+      {name:'Fri',type:'Easy Run',desc:'3 mi easy',key:false,rest:false,detail:'3 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'11 mi easy',key:true,rest:false,detail:'11 miles easy. HR under 145 throughout. Practice fueling: gel every 45 min on runs over 90 minutes.\n\nStart at 8:30/mi and let effort guide you — don\'t chase pace.',coaching:'Long runs are the cornerstone of marathon fitness. Easy effort is correct, not a compromise.'},
+      {name:'Sun',type:'Recovery Run',desc:'3 mi recovery',key:false,rest:false,detail:'3 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 11 · Build Phase", badge:"Build Phase", badgeClass:"badge-amber",
-mileage:"Target: 80 miles · Build peak weeks",
-focus:"You're now in the formal build structure, targeting 80+ miles/week. LT sessions lengthen significantly. Medium-long runs hit 15–17 miles. Long runs include marathon-pace miles. This is where sub-3 fitness is built.",
-days:[
-      {name:"Mon",type:"Rest + Mobility",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"VO2max",desc:"11 mi w/ 6×1200m @ 5K pace",key:true,detail:"2mi WU + 6×1200m @ 5:50–6:00/mi (3 min jog) + 2mi CD. Total: ~11mi.",coaching:"VO2max intervals at this stage of the plan push your aerobic ceiling higher, allowing LT and MP to improve."},
-      {name:"Wed",type:"General Aerobic",desc:"10 mi general aerobic",key:false,detail:"10 miles moderate aerobic.",coaching:""},
-      {name:"Thu",type:"Recovery + Strength B",desc:"7 mi easy + Economy",key:false,detail:"7 miles easy.\n\nStrength B:\nB · Running Economy (45 min)\nWarmup: 5 min row + ankle mobility\n1. Box jump → stick landing — 3×8\n2. Single-leg squat to bench — 3×10 each\n3. Nordic hamstring curl — 3×6 (eccentric focus, slow)\n4. Reverse lunge with knee drive — 3×10 each\n5. Pallof press — 3×12 each side\n6. Banded clamshell — 3×20 each\n7. RKC plank + side plank — 3×30 sec\nCool-down: roll thoracic spine + hip flexors",coaching:""},
-      {name:"Fri",type:"Lactate Threshold",desc:"10 mi w/ 7 @ LT",key:true,detail:"1.5mi WU + 7mi @ LT pace (6:32–6:38/mi) + 1.5mi CD. Total: 10mi.",coaching:"Pfitz moves the LT run to Friday so it pairs with a long run on Sunday — cumulative fatigue, controlled."},
-      {name:"Sat",type:"Medium-Long Run",desc:"17 mi general aerobic",key:false,detail:"17 miles general aerobic pace. Back-to-back LT Friday + medium-long Saturday is classic Pfitz.",coaching:""},
-      {name:"Sun",type:"Long Run",desc:"22 mi w/ 14 @ MP",key:false,detail:"22 miles: 8 easy + 14 at marathon pace (6:52/mi).\n\nFuel every 40 minutes. This is your hardest long run to date.",coaching:"14 miles at goal race pace in a 22-mile run. If you complete this, sub-3 is within reach."}
+  { title:'Week 5 · Base Building', badge:'Base Building', badgeClass:'badge-green',
+    mileage:'Target: 40 miles · 6 days running, all easy',
+    focus:'Week 5 of base building. All runs easy. Establish the habit of 6 days/week. Keep every run truly conversational — this is the foundation everything else is built on.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles easy at 8:00–8:30/mi. These will become workout days in week 7 — for now just run easy and build the habit.',coaching:'Patience now pays off in October and November.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi + gym',key:false,rest:false,detail:'6 miles easy in the morning. Evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, Copenhagen planks, calf raises, dead bugs. This is non-negotiable for injury prevention.',coaching:'Hip and glute strength is the #1 injury prevention tool for marathon training at high mileage.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'14 mi easy',key:true,rest:false,detail:'14 miles easy. HR under 145 throughout. Practice fueling: gel every 45 min on runs over 90 minutes.\n\nStart at 8:30/mi and let effort guide you — don\'t chase pace.',coaching:'Long runs are the cornerstone of marathon fitness. Easy effort is correct, not a compromise.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 15 · Build Peak", badge:"Build Phase", badgeClass:"badge-amber",
-mileage:"Target: 95 miles · Peak mileage week",
-focus:"Peak week at 95 miles. Three quality sessions: VO2max intervals, lactate threshold, and a 23-mile long run with marathon-pace miles. All additional volume is at easy/recovery pace. This is the highest training load of the cycle — comparable to what elite sub-3 programs prescribe.",
-days:[
-      {name:"Mon",type:"Rest + Mobility",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"VO2max",desc:"12 mi w/ 5×1600m @ 5K pace",key:true,detail:"2mi WU + 5×1600m @ 5:50–6:00/mi (3 min jog) + 2mi CD. Total: ~12mi.\n\nMile repeats are the apex VO2max stimulus. Five of them at 5K pace with full recovery.",coaching:"Mile repeats. One of the hardest track sessions in marathon training. Execute with control — even splits."},
-      {name:"Wed",type:"General Aerobic",desc:"11 mi general aerobic",key:false,detail:"11 miles moderate aerobic.",coaching:""},
-      {name:"Thu",type:"Recovery + Strength A",desc:"8 mi easy + Hip & Glute",key:false,detail:"8 miles easy.\n\nStrength A:\nA · Hip & Glute Power (45 min)\nWarmup: 5 min bike/row + hip circles + leg swings\n1. Single-leg Romanian deadlift — 3×10 each leg (moderate DB)\n2. Bulgarian split squat — 3×10 each leg\n3. Lateral band walk — 3×20 steps each way\n4. Barbell hip thrust — 3×12\n5. Copenhagen plank — 3×20 sec each side\n6. Single-leg calf raise — 3×15 each\n7. Dead bug — 3×10 each side\nCool-down: 5 min foam roll glutes, IT band, calves",coaching:""},
-      {name:"Fri",type:"Lactate Threshold",desc:"11 mi w/ 8 @ LT",key:true,detail:"1.5mi WU + 8mi @ LT pace (6:32–6:38/mi) + 1.5mi CD. Total: 11mi.",coaching:"8 miles at lactate threshold is the peak LT session of the cycle."},
-      {name:"Sat",type:"Medium-Long",desc:"15 mi general aerobic",key:false,detail:"15 miles.",coaching:""},
-      {name:"Sun",type:"Long Run",desc:"23 mi w/ 13 @ MP",key:false,detail:"23 miles: 10 easy + 13 at marathon pace (6:52/mi).\n\nYour longest and hardest run. Fuel every 40 minutes. Treat this like race day: same shoes, same nutrition, same warmup.",coaching:"If you complete this run, you are ready to race sub-3 at CIM."}
+  { title:'Week 6 · Base Building', badge:'Base Building', badgeClass:'badge-green',
+    mileage:'Target: 41 miles · 6 days running, all easy',
+    focus:'Week 6 of base building. All runs easy. Establish the habit of 6 days/week. Keep every run truly conversational — this is the foundation everything else is built on.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles easy at 8:00–8:30/mi. These will become workout days in week 7 — for now just run easy and build the habit.',coaching:'Patience now pays off in October and November.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi + gym',key:false,rest:false,detail:'6 miles easy in the morning. Evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, Copenhagen planks, calf raises, dead bugs. This is non-negotiable for injury prevention.',coaching:'Hip and glute strength is the #1 injury prevention tool for marathon training at high mileage.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'14 mi easy',key:true,rest:false,detail:'14 miles easy. HR under 145 throughout. Practice fueling: gel every 45 min on runs over 90 minutes.\n\nStart at 8:30/mi and let effort guide you — don\'t chase pace.',coaching:'Long runs are the cornerstone of marathon fitness. Easy effort is correct, not a compromise.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 21 · Race Phase", badge:"Race-Specific", badgeClass:"badge-red",
-mileage:"Target: 75 miles · Tune-up race week",
-focus:"Race phase at 75 miles/week. VO2max work replaced by tune-up races. This weekend race is a B event — effort and logistics practice, not a PR attempt. Use it to rehearse your warm-up, nutrition, and pacing plan for CIM.",
-days:[
-      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"General Aerobic",desc:"10 mi general aerobic",key:false,detail:"10 miles moderate aerobic.",coaching:""},
-      {name:"Wed",type:"Lactate Threshold",desc:"9 mi w/ 6 @ LT",key:true,detail:"1.5mi WU + 6mi @ LT + 1.5mi CD.",coaching:""},
-      {name:"Thu",type:"Recovery + Strength B",desc:"7 mi easy + Economy",key:false,detail:"7 miles easy.\n\nStrength B:\nB · Running Economy (45 min)\nWarmup: 5 min row + ankle mobility\n1. Box jump → stick landing — 3×8\n2. Single-leg squat to bench — 3×10 each\n3. Nordic hamstring curl — 3×6 (eccentric focus, slow)\n4. Reverse lunge with knee drive — 3×10 each\n5. Pallof press — 3×12 each side\n6. Banded clamshell — 3×20 each\n7. RKC plank + side plank — 3×30 sec\nCool-down: roll thoracic spine + hip flexors",coaching:""},
-      {name:"Fri",type:"Shakeout",desc:"4 mi easy + strides",key:false,detail:"4 miles easy + 5×100m strides. Pre-race shakeout.",coaching:""},
-      {name:"Sat",type:"Tune-Up Race",desc:"Half marathon or 10K",key:true,detail:"Race day. B/C effort — hard but not desperate.\n\nHalf target: sub-1:27 (6:38/mi) = on track for sub-3.\n10K target: sub-40:30 (6:32/mi) = on track.\n\nPractice full race-day routine: same breakfast, warmup, gel timing.",coaching:"Race as a workout. Note everything: pacing, GI, shoes. What would you adjust at CIM?"},
-      {name:"Sun",type:"Recovery + Long",desc:"12 mi easy",rest:false,detail:"12 easy recovery miles the day after the race.",coaching:""}
+  { title:'Week 7 · Base+ Tempo', badge:'Base + Tempo', badgeClass:'badge-green',
+    mileage:'Target: 38 miles · Tue: 3 mi tempo',
+    focus:'Tempo runs begin. Tuesday is now your key midweek workout. Lactate threshold pace (6:32–6:38/mi) is the most important stimulus for marathon fitness. Thursday stays easy + strength.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo Run',desc:'6 mi w/ 3@LT',key:true,rest:false,detail:'2 mi easy warmup + 3 mi @ 6:32–6:38/mi + 1.5 mi cooldown.\n\nTempo pace is \'comfortably hard\' — you could say a few words but not a full sentence. HR 155–168.',coaching:'Tempo runs raise your lactate threshold — the pace at which you can sustain effort for a full marathon. These miles are gold.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'5 mi + gym',key:false,rest:false,detail:'5 miles easy. Evening: 45 min strength.\n\nProgression: add load to single-leg work. Bulgarian split squats, single-leg RDLs, hip thrusts with weight, Copenhagen planks.',coaching:'Keep Thursday easy on the legs — you need to be fresh for Saturday\'s long run.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'15 mi easy',key:true,rest:false,detail:'15 miles easy. Keep effort controlled throughout — HR 130–145.\n\nFuel every 45 minutes. Hydrate with electrolytes.',coaching:'The long run and the tempo run are the two pillars of this phase. Everything else supports them.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
     ]
   },
-  { title:"Week 36 · Taper", badge:"Taper", badgeClass:"badge-blue",
-mileage:"Target: 50 miles · Week 1 of taper",
-focus:"Three weeks to CIM. Pfitz taper: mileage drops 20% each week but intensity stays. Your fitness is locked in. The only risk now is doing too much. Trust the process.",
-days:[
-      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
-      {name:"Tue",type:"General Aerobic",desc:"8 mi general aerobic",key:false,detail:"8 miles.",coaching:""},
-      {name:"Wed",type:"Lactate Threshold",desc:"8 mi w/ 5 @ LT",key:true,detail:"1.5mi WU + 5mi @ LT + 1.5mi CD. Reduced volume, same intensity.",coaching:"Keep the intensity during taper — only the volume drops."},
-      {name:"Thu",type:"Recovery",desc:"6 mi easy",key:false,detail:"6 miles easy.",coaching:""},
-      {name:"Fri",type:"General Aerobic",desc:"6 mi + strides",key:false,detail:"6 miles + 6×100m strides.",coaching:""},
-      {name:"Sat",type:"Medium-Long",desc:"12 mi w/ 6 @ MP",key:false,detail:"12 miles: 6 easy + 6 at marathon pace. Final quality long run.",coaching:""},
-      {name:"Sun",type:"Long Run",desc:"15 mi easy",key:false,detail:"15 miles easy. Last long run before race day.",coaching:""}
+  { title:'Week 8 · Base+ Tempo', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 40 miles · Tue: 4 mi tempo',
+    focus:'Recovery week — mileage down 25%. Tempo is shortened. Let the last block of training sink in.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo Run',desc:'7 mi w/ 4@LT',key:true,rest:false,detail:'2 mi easy warmup + 4 mi @ 6:32–6:38/mi + 1.5 mi cooldown.\n\nTempo pace is \'comfortably hard\' — you could say a few words but not a full sentence. HR 155–168.',coaching:'Tempo runs raise your lactate threshold — the pace at which you can sustain effort for a full marathon. These miles are gold.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'5 mi + gym',key:false,rest:false,detail:'5 miles easy. Evening: 45 min strength.\n\nProgression: add load to single-leg work. Bulgarian split squats, single-leg RDLs, hip thrusts with weight, Copenhagen planks.',coaching:'Keep Thursday easy on the legs — you need to be fresh for Saturday\'s long run.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'15 mi easy',key:true,rest:false,detail:'15 miles easy. Keep effort controlled throughout — HR 130–145.\n\nFuel every 45 minutes. Hydrate with electrolytes.',coaching:'The long run and the tempo run are the two pillars of this phase. Everything else supports them.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 9 · Base+ Tempo', badge:'Base + Tempo', badgeClass:'badge-green',
+    mileage:'Target: 45 miles · Tue: 4 mi tempo',
+    focus:'Tempo runs begin. Tuesday is now your key midweek workout. Lactate threshold pace (6:32–6:38/mi) is the most important stimulus for marathon fitness. Thursday stays easy + strength.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo Run',desc:'8 mi w/ 4@LT',key:true,rest:false,detail:'2 mi easy warmup + 4 mi @ 6:32–6:38/mi + 1.5 mi cooldown.\n\nTempo pace is \'comfortably hard\' — you could say a few words but not a full sentence. HR 155–168.',coaching:'Tempo runs raise your lactate threshold — the pace at which you can sustain effort for a full marathon. These miles are gold.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi + gym',key:false,rest:false,detail:'6 miles easy. Evening: 45 min strength.\n\nProgression: add load to single-leg work. Bulgarian split squats, single-leg RDLs, hip thrusts with weight, Copenhagen planks.',coaching:'Keep Thursday easy on the legs — you need to be fresh for Saturday\'s long run.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'16 mi easy',key:true,rest:false,detail:'16 miles easy. Keep effort controlled throughout — HR 130–145.\n\nFuel every 45 minutes. Hydrate with electrolytes.',coaching:'The long run and the tempo run are the two pillars of this phase. Everything else supports them.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 10 · Base+ Tempo', badge:'Base + Tempo', badgeClass:'badge-green',
+    mileage:'Target: 46 miles · Tue: 5 mi tempo',
+    focus:'Tempo runs begin. Tuesday is now your key midweek workout. Lactate threshold pace (6:32–6:38/mi) is the most important stimulus for marathon fitness. Thursday stays easy + strength.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo Run',desc:'8 mi w/ 5@LT',key:true,rest:false,detail:'2 mi easy warmup + 5 mi @ 6:32–6:38/mi + 1.5 mi cooldown.\n\nTempo pace is \'comfortably hard\' — you could say a few words but not a full sentence. HR 155–168.',coaching:'Tempo runs raise your lactate threshold — the pace at which you can sustain effort for a full marathon. These miles are gold.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi + gym',key:false,rest:false,detail:'6 miles easy. Evening: 45 min strength.\n\nProgression: add load to single-leg work. Bulgarian split squats, single-leg RDLs, hip thrusts with weight, Copenhagen planks.',coaching:'Keep Thursday easy on the legs — you need to be fresh for Saturday\'s long run.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'17 mi easy',key:true,rest:false,detail:'17 miles easy. Keep effort controlled throughout — HR 130–145.\n\nFuel every 45 minutes. Hydrate with electrolytes.',coaching:'The long run and the tempo run are the two pillars of this phase. Everything else supports them.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 11 · Base+ Tempo', badge:'Base + Tempo', badgeClass:'badge-green',
+    mileage:'Target: 47 miles · Tue: 5 mi tempo',
+    focus:'Tempo runs begin. Tuesday is now your key midweek workout. Lactate threshold pace (6:32–6:38/mi) is the most important stimulus for marathon fitness. Thursday stays easy + strength.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo Run',desc:'9 mi w/ 5@LT',key:true,rest:false,detail:'2 mi easy warmup + 5 mi @ 6:32–6:38/mi + 1.5 mi cooldown.\n\nTempo pace is \'comfortably hard\' — you could say a few words but not a full sentence. HR 155–168.',coaching:'Tempo runs raise your lactate threshold — the pace at which you can sustain effort for a full marathon. These miles are gold.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi + gym',key:false,rest:false,detail:'6 miles easy. Evening: 45 min strength.\n\nProgression: add load to single-leg work. Bulgarian split squats, single-leg RDLs, hip thrusts with weight, Copenhagen planks.',coaching:'Keep Thursday easy on the legs — you need to be fresh for Saturday\'s long run.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'17 mi easy',key:true,rest:false,detail:'17 miles easy. Keep effort controlled throughout — HR 130–145.\n\nFuel every 45 minutes. Hydrate with electrolytes.',coaching:'The long run and the tempo run are the two pillars of this phase. Everything else supports them.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 12 · Base+ Tempo', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 36 miles · Tue: 3 mi tempo',
+    focus:'Recovery week — mileage down 25%. Tempo is shortened. Let the last block of training sink in.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo Run',desc:'6 mi w/ 3@LT',key:true,rest:false,detail:'2 mi easy warmup + 3 mi @ 6:32–6:38/mi + 1.5 mi cooldown.\n\nTempo pace is \'comfortably hard\' — you could say a few words but not a full sentence. HR 155–168.',coaching:'Tempo runs raise your lactate threshold — the pace at which you can sustain effort for a full marathon. These miles are gold.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'4 mi + gym',key:false,rest:false,detail:'4 miles easy. Evening: 45 min strength.\n\nProgression: add load to single-leg work. Bulgarian split squats, single-leg RDLs, hip thrusts with weight, Copenhagen planks.',coaching:'Keep Thursday easy on the legs — you need to be fresh for Saturday\'s long run.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'14 mi easy',key:true,rest:false,detail:'14 miles easy. Keep effort controlled throughout — HR 130–145.\n\nFuel every 45 minutes. Hydrate with electrolytes.',coaching:'The long run and the tempo run are the two pillars of this phase. Everything else supports them.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 13 · Build Phase', badge:'Build Phase', badgeClass:'badge-amber',
+    mileage:'Target: 50 miles · Tue: 2mi WU + 5mi @ 6:32/mi + 1.5mi CD · Thu: 6×800m @ 3:00',
+    focus:'Build phase — volume and quality both increasing. Tuesday alternates tempo and marathon pace work. Thursday track sessions (Yasso 800s) are your fitness benchmark — 3:00 per 800m = sub-3 marathon capability.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo 5 mi',desc:'2mi WU + 5mi @ 6:32/mi + 1.5mi CD',key:true,rest:false,detail:'2mi WU + 5mi @ 6:32–6:38/mi + 1.5mi CD. Total ~8.5mi.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Yasso 800s 6×',desc:'6×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 6×800m in 3:00 (2:00 jog recovery) + 2mi CD.\n\nFirst track session. Yasso 800s: your 800m pace in min:sec predicts your marathon in hrs:min. 3:00 per 800m = sub-3 marathon.\n\n45 min strength after: maintain the single-leg work.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'18 mi easy',key:true,rest:false,detail:'18 miles easy.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 14 · Build Phase', badge:'Build Phase', badgeClass:'badge-amber',
+    mileage:'Target: 52 miles · Tue: 2mi WU + 8mi @ 6:52/mi + 2mi CD · Thu: 7×800m @ 3:00',
+    focus:'Build phase — volume and quality both increasing. Tuesday alternates tempo and marathon pace work. Thursday track sessions (Yasso 800s) are your fitness benchmark — 3:00 per 800m = sub-3 marathon capability.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 8 mi',desc:'2mi WU + 8mi @ 6:52/mi + 2mi CD',key:true,rest:false,detail:'2mi WU + 8mi @ marathon goal pace (6:52/mi) + 2mi CD. Total 12mi.\n\nMarathon pace should feel controlled, not labored.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Yasso 800s 7×',desc:'7×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 7×800m in 3:00 (90s jog recovery) + 2mi CD.\n\n45 min strength after: maintain the single-leg work.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'18 mi easy',key:true,rest:false,detail:'18 miles easy.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 15 · Build Phase', badge:'Build Phase', badgeClass:'badge-amber',
+    mileage:'Target: 54 miles · Tue: 2mi WU + 6mi @ 6:32/mi + 1.5mi CD · Thu: 7×800m @ 3:00',
+    focus:'Build phase — volume and quality both increasing. Tuesday alternates tempo and marathon pace work. Thursday track sessions (Yasso 800s) are your fitness benchmark — 3:00 per 800m = sub-3 marathon capability.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo 6 mi',desc:'2mi WU + 6mi @ 6:32/mi + 1.5mi CD',key:true,rest:false,detail:'2mi WU + 6mi @ 6:32–6:38/mi + 1.5mi CD. Total ~9.5mi.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Yasso 800s 7×',desc:'7×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 7×800m in 3:00 (90s jog) + 2mi CD.\n\n45 min strength after: maintain the single-leg work.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'19 mi easy',key:true,rest:false,detail:'19 miles easy.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 16 · Build Phase', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 42 miles · Tue: 8 mi easy · Thu: 6 mi easy + gym',
+    focus:'Recovery week. Mileage drops ~25%. Body is absorbing the training block. Protect the rest.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy',desc:'8 mi easy',key:false,rest:false,detail:'8 miles easy. Recovery week — no workout.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi easy + gym',key:false,rest:false,detail:'6 miles easy + 45 min strength. Recovery week — no track.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'15 mi easy',key:true,rest:false,detail:'15 miles easy throughout.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 17 · Build Phase', badge:'Build Phase', badgeClass:'badge-amber',
+    mileage:'Target: 56 miles · Tue: 2mi WU + 10mi @ 6:52/mi + 2mi CD · Thu: 8×800m @ 3:00',
+    focus:'Build phase — volume and quality both increasing. Tuesday alternates tempo and marathon pace work. Thursday track sessions (Yasso 800s) are your fitness benchmark — 3:00 per 800m = sub-3 marathon capability.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 10 mi',desc:'2mi WU + 10mi @ 6:52/mi + 2mi CD',key:true,rest:false,detail:'2mi WU + 10mi @ 6:52/mi + 2mi CD. Total 14mi.\n\nIf the first few MP miles feel hard, back off slightly — don\'t force it.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Yasso 800s 8×',desc:'8×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 8×800m in 3:00 (90s jog) + 2mi CD.\n\n45 min strength after: maintain the single-leg work.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ MP finish',key:true,rest:false,detail:'20 miles. Last 4–5 miles at marathon goal pace (6:52/mi).\n\nQuality finish long runs teach your body to run fast when tired — exactly what miles 20–26 require.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 18 · Build Phase', badge:'Build Phase', badgeClass:'badge-amber',
+    mileage:'Target: 57 miles · Tue: 2mi WU + 6mi @ 6:32/mi + 1.5mi CD · Thu: 8×800m @ 3:00',
+    focus:'Build phase — volume and quality both increasing. Tuesday alternates tempo and marathon pace work. Thursday track sessions (Yasso 800s) are your fitness benchmark — 3:00 per 800m = sub-3 marathon capability.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo 6 mi',desc:'2mi WU + 6mi @ 6:32/mi + 1.5mi CD',key:true,rest:false,detail:'2mi WU + 6mi @ 6:32–6:38/mi + 1.5mi CD.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Yasso 800s 8×',desc:'8×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 8×800m in 3:00 (90s jog) + 2mi CD.\n\n45 min strength after: maintain the single-leg work.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ MP finish',key:true,rest:false,detail:'20 miles. Last 4–5 miles at marathon goal pace (6:52/mi).\n\nQuality finish long runs teach your body to run fast when tired — exactly what miles 20–26 require.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 19 · Build Phase', badge:'Build Phase', badgeClass:'badge-amber',
+    mileage:'Target: 59 miles · Tue: 2mi WU + 12mi @ 6:52/mi + 2mi CD · Thu: 9×800m @ 3:00',
+    focus:'Build phase — volume and quality both increasing. Tuesday alternates tempo and marathon pace work. Thursday track sessions (Yasso 800s) are your fitness benchmark — 3:00 per 800m = sub-3 marathon capability.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 12 mi',desc:'2mi WU + 12mi @ 6:52/mi + 2mi CD',key:true,rest:false,detail:'2mi WU + 12mi @ 6:52/mi + 2mi CD. Total 16mi.\n\nYour longest marathon pace run of the cycle so far.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Yasso 800s 9×',desc:'9×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 9×800m in 3:00 (90s jog) + 2mi CD.\n\n45 min strength after: maintain the single-leg work.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'21 mi w/ MP finish',key:true,rest:false,detail:'21 miles. Last 4–5 miles at marathon goal pace (6:52/mi).\n\nQuality finish long runs teach your body to run fast when tired — exactly what miles 20–26 require.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 20 · Build Phase', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 44 miles · Tue: 7 mi easy · Thu: 6 mi easy + gym',
+    focus:'Recovery week. Mileage drops ~25%. Body is absorbing the training block. Protect the rest.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy',desc:'7 mi easy',key:false,rest:false,detail:'7 miles easy. Recovery week.',coaching:'Marathon pace work is the most specific training you can do. These miles build race-day confidence.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi easy + gym',key:false,rest:false,detail:'6 miles easy + strength. Recovery week.',coaching:'Yasso 800s are your progress tracker. Run the first rep feeling like you could do 20 — go out easy.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'16 mi easy',key:true,rest:false,detail:'16 miles easy throughout.',coaching:'Getting to mile 20 feeling strong then running marathon pace — this is how sub-3 is built.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 21 · Peak Training', badge:'Peak Training', badgeClass:'badge-red',
+    mileage:'Target: 60 miles · Tue: 18mi w/ 14@MP · Thu: 10×800m @ 3:00',
+    focus:'Peak training. 60 miles this week. You will be tired — that is the point. You\'re building the engine for December. Trust the process and keep the easy runs easy.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD. Total 18mi.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.\n\nIf you hit all 10 at 3:00 feeling controlled, sub-3 is yours.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ 12@MP',key:true,rest:false,detail:'20 miles: first 8 easy, last 12 at marathon pace (6:52/mi).\n\nFuel aggressively — gel every 40 minutes. This is race simulation.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 22 · Peak Training', badge:'Peak Training', badgeClass:'badge-red',
+    mileage:'Target: 63 miles · Tue: 7mi tempo · Thu: 10×800m @ 3:00',
+    focus:'Peak training. 63 miles this week. You will be tired — that is the point. You\'re building the engine for December. Trust the process and keep the easy runs easy.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo 7 mi',desc:'7mi tempo',key:true,rest:false,detail:'2mi WU + 7mi @ 6:32/mi + 1.5mi CD.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'22 mi w/ 14@MP',key:true,rest:false,detail:'22 miles: first 8 easy, last 14 at marathon pace (6:52/mi).\n\nFuel aggressively — gel every 40 minutes. This is race simulation.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'7 mi recovery',key:false,rest:false,detail:'7 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 23 · Peak Training', badge:'Peak Training', badgeClass:'badge-red',
+    mileage:'Target: 65 miles · Tue: 20mi w/ 16@MP · Thu: 10×800m @ 3:00',
+    focus:'Peak training. 65 miles this week. You will be tired — that is the point. You\'re building the engine for December. Trust the process and keep the easy runs easy.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 16 mi',desc:'20mi w/ 16@MP',key:true,rest:false,detail:'2mi WU + 16mi @ 6:52/mi + 2mi CD. Total 20mi.\n\nYour hardest midweek workout. Nail the pace — not faster.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'22 mi w/ 14@MP',key:true,rest:false,detail:'22 miles: first 8 easy, last 14 at marathon pace (6:52/mi).\n\nFuel aggressively — gel every 40 minutes. This is race simulation.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'7 mi recovery',key:false,rest:false,detail:'7 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 24 · Peak Training', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 47 miles · Tue: 8mi easy · Thu: 6mi easy + gym',
+    focus:'Recovery week. The hard block you just completed was the heaviest training of the cycle. Sleep, eat, and absorb it.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy',desc:'8mi easy',key:false,rest:false,detail:'8 miles easy. Recovery week.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6mi easy + gym',key:false,rest:false,detail:'6 miles easy + strength. Recovery week.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'17 mi easy',key:true,rest:false,detail:'17 miles easy. Down week.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 25 · Peak Training', badge:'Peak Training', badgeClass:'badge-red',
+    mileage:'Target: 66 miles · Tue: 18mi w/ 14@MP · Thu: 10×800m @ 3:00',
+    focus:'Peak training. 66 miles this week. You will be tired — that is the point. You\'re building the engine for December. Trust the process and keep the easy runs easy.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'22 mi w/ 14@MP',key:true,rest:false,detail:'22 miles: first 8 easy, last 14 at marathon pace (6:52/mi).\n\nFuel aggressively — gel every 40 minutes. This is race simulation.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'7 mi recovery',key:false,rest:false,detail:'7 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 26 · Peak Training', badge:'Peak Training', badgeClass:'badge-red',
+    mileage:'Target: 68 miles · Tue: 8mi tempo · Thu: 10×800m @ 3:00',
+    focus:'Peak training. 68 miles this week. You will be tired — that is the point. You\'re building the engine for December. Trust the process and keep the easy runs easy.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo 8 mi',desc:'8mi tempo',key:true,rest:false,detail:'2mi WU + 8mi @ 6:32/mi + 1.5mi CD.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'23 mi w/ 16@MP',key:true,rest:false,detail:'23 miles: first 7 easy, last 16 at marathon pace (6:52/mi).\n\nFuel aggressively — gel every 40 minutes. This is race simulation.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'7 mi recovery',key:false,rest:false,detail:'7 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 27 · Peak Training', badge:'Peak Training', badgeClass:'badge-red',
+    mileage:'Target: 70 miles · Tue: 20mi w/ 16@MP · Thu: 10×800m @ 3:00',
+    focus:'Peak training. 70 miles this week. You will be tired — that is the point. You\'re building the engine for December. Trust the process and keep the easy runs easy.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'7 mi easy',key:false,rest:false,detail:'7 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 16 mi',desc:'20mi w/ 16@MP',key:true,rest:false,detail:'2mi WU + 16mi @ 6:52/mi + 2mi CD.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.\n\nPeak workout of the cycle. Execute this well and race day becomes a formality.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'24 mi w/ 16@MP',key:true,rest:false,detail:'24 miles: first 8 easy, last 16 at marathon pace (6:52/mi).\n\nFuel aggressively — gel every 40 minutes. This is race simulation.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'8 mi recovery',key:false,rest:false,detail:'8 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 28 · Peak Training', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 49 miles · Tue: 8mi easy · Thu: 6mi easy + gym',
+    focus:'Recovery week. The hard block you just completed was the heaviest training of the cycle. Sleep, eat, and absorb it.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Easy',desc:'8mi easy',key:false,rest:false,detail:'8 miles easy. Recovery week.',coaching:'Marathon pace should feel hard but controlled. If it feels easy, you\'re ready.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6mi easy + gym',key:false,rest:false,detail:'6 miles easy + strength. Recovery week.',coaching:'10 Yassos at 3:00 is the benchmark workout of the entire cycle.'},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'17 mi easy',key:true,rest:false,detail:'17 miles easy. Down week.',coaching:'Peak long runs are where confidence is built. Get to mile 20 strong.'},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 29 · Race Phase', badge:'Race Phase', badgeClass:'badge-red',
+    mileage:'Target: 62 miles',
+    focus:'Race phase week 29. Fitness is very high. Keep executing the plan — the hay is almost in the barn.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ MP finish',key:true,rest:false,detail:'20 miles: first 14 easy, last 6 at marathon pace.\n\nFuel practice — race nutrition protocol every 40 minutes.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 30 · Race Phase', badge:'Race Week', badgeClass:'badge-amber',
+    mileage:'Target: 50 miles',
+    focus:'Hudson Valley Half Marathon week. Treat this as a hard training run, not a PR attempt. Target sub-1:30 (6:52/mi) as a fitness benchmark for CIM.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Sharpener',desc:'2mi WU + 4×1mi @ 6:20/mi + 2mi CD',key:true,rest:false,detail:'2mi WU + 4×1mi @ 6:20/mi (2min jog recovery) + 2mi CD. Stay sharp, don\'t fatigue yourself before Sunday.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strides',desc:'5 mi + 6 strides',key:false,rest:false,detail:'5 miles easy + 6×100m strides at race pace. Keep it light — race is Sunday.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Race: Hudson Valley Half',desc:'Hudson Valley Half Marathon',key:true,rest:false,detail:'Hudson Valley Half Marathon. Goal: sub-1:30 (6:52/mi).\n\nRun the first 5 miles at 6:55/mi, then let it come to you in the back half. This is a fitness test, not a peak performance.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 31 · Race Phase', badge:'Race Phase', badgeClass:'badge-red',
+    mileage:'Target: 62 miles',
+    focus:'Race phase week 31. Fitness is very high. Keep executing the plan — the hay is almost in the barn.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ MP finish',key:true,rest:false,detail:'20 miles: first 14 easy, last 6 at marathon pace.\n\nFuel practice — race nutrition protocol every 40 minutes.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 32 · Race Phase', badge:'Recovery', badgeClass:'badge-blue',
+    mileage:'Target: 49 miles',
+    focus:'Recovery week after a hard 4-week block. Mileage down 25%, no track workout Thursday.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'Tempo 4 mi',desc:'2mi WU + 4mi @ 6:32/mi + 1.5mi CD',key:false,rest:false,detail:'2mi WU + 4mi @ 6:32/mi + 1.5mi CD.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy + Strength',desc:'6 mi easy + gym',key:false,rest:false,detail:'6 miles easy + 45 min strength.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'17 mi easy',key:true,rest:false,detail:'17 miles easy. Down week long run.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 33 · Race Phase', badge:'Race Phase', badgeClass:'badge-red',
+    mileage:'Target: 62 miles',
+    focus:'Race phase week 33. Fitness is very high. Keep executing the plan — the hay is almost in the barn.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ MP finish',key:true,rest:false,detail:'20 miles: first 14 easy, last 6 at marathon pace.\n\nFuel practice — race nutrition protocol every 40 minutes.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 34 · Race Phase', badge:'Race Phase', badgeClass:'badge-red',
+    mileage:'Target: 64 miles',
+    focus:'Race phase week 34. Fitness is very high. Keep executing the plan — the hay is almost in the barn.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'21 mi w/ MP finish',key:true,rest:false,detail:'21 miles: first 15 easy, last 6 at marathon pace.\n\nFuel practice — race nutrition protocol every 40 minutes.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 35 · Race Phase', badge:'Race Phase', badgeClass:'badge-red',
+    mileage:'Target: 62 miles',
+    focus:'Race phase week 35. Fitness is very high. Keep executing the plan — the hay is almost in the barn.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'6 mi easy',key:false,rest:false,detail:'6 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Tue',type:'MP Run 14 mi',desc:'18mi w/ 14@MP',key:true,rest:false,detail:'2mi WU + 14mi @ 6:52/mi + 2mi CD.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'10×Yasso 800s',desc:'10×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 10×800m @ 3:00 (90s jog) + 2mi CD.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'20 mi w/ MP finish',key:true,rest:false,detail:'20 miles: first 14 easy, last 6 at marathon pace.\n\nFuel practice — race nutrition protocol every 40 minutes.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'6 mi recovery',key:false,rest:false,detail:'6 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 36 · Taper', badge:'Taper', badgeClass:'badge-blue',
+    mileage:'Target: 48 miles · Sharpen, don\'t build',
+    focus:'Taper begins. Mileage drops but pace stays fast. Your fitness is locked in — trust it. Resist the urge to cram extra miles. The work is done.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'5 mi easy',key:false,rest:false,detail:'5 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Taper runs feel weird. That\'s the taper. You\'re not losing fitness.'},
+      {name:'Tue',type:'Sharpener',desc:'8mi tempo',key:true,rest:false,detail:'2mi WU + 8mi @ 6:32/mi + 1.5mi CD. Last full tempo of the cycle.',coaching:'You\'re not building fitness now — you\'re reminding your legs what fast feels like.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Track',desc:'8×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 8×800m @ 3:00 (90s jog) + 2mi CD.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'16 mi',key:false,rest:false,detail:'16 miles: 10 easy + 6 at marathon pace. Last quality long run.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'5 mi recovery',key:false,rest:false,detail:'5 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 37 · Taper', badge:'Taper', badgeClass:'badge-blue',
+    mileage:'Target: 38 miles · Sharpen, don\'t build',
+    focus:'Taper begins. Mileage drops but pace stays fast. Your fitness is locked in — trust it. Resist the urge to cram extra miles. The work is done.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Taper runs feel weird. That\'s the taper. You\'re not losing fitness.'},
+      {name:'Tue',type:'Sharpener',desc:'6mi w/ 4@MP',key:true,rest:false,detail:'2mi WU + 6mi @ 6:52/mi (marathon pace) + 2mi CD. Remind your legs what race pace feels like.',coaching:'You\'re not building fitness now — you\'re reminding your legs what fast feels like.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Track',desc:'6×800m @ 3:00',key:true,rest:false,detail:'2mi WU + 6×800m @ 3:00 (90s jog) + 2mi CD. Volume down, pace same.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'3 mi easy',key:false,rest:false,detail:'3 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'13 mi',key:false,rest:false,detail:'13 miles easy. Short taper long run — don\'t be tempted to go longer.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'4 mi recovery',key:false,rest:false,detail:'4 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 38 · Taper', badge:'Taper', badgeClass:'badge-blue',
+    mileage:'Target: 29 miles · Sharpen, don\'t build',
+    focus:'Taper begins. Mileage drops but pace stays fast. Your fitness is locked in — trust it. Resist the urge to cram extra miles. The work is done.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'3 mi easy',key:false,rest:false,detail:'3 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Taper runs feel weird. That\'s the taper. You\'re not losing fitness.'},
+      {name:'Tue',type:'Sharpener',desc:'sharpener',key:true,rest:false,detail:'2mi WU + 4×1mi @ 6:20/mi (2min jog) + 2mi CD. Sharp and fast, not hard.',coaching:'You\'re not building fitness now — you\'re reminding your legs what fast feels like.'},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Track',desc:'4×800m @ 2:55',key:true,rest:false,detail:'2mi WU + 4×800m @ 2:55 (2min jog) + 2mi CD. Slightly faster than Yasso pace — just waking the legs up.',coaching:''},
+      {name:'Fri',type:'Easy Run',desc:'3 mi easy',key:false,rest:false,detail:'3 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Easy runs build your aerobic engine. The pace is irrelevant — the time on feet is what matters.'},
+      {name:'Sat',type:'Long Run',desc:'10 mi',key:false,rest:false,detail:'10 miles easy. Last double-digit run before CIM. Keep it easy and enjoy it.',coaching:''},
+      {name:'Sun',type:'Recovery Run',desc:'3 mi recovery',key:false,rest:false,detail:'3 miles very easy. HR under 130 if possible. This flushes lactate and speeds recovery from the long run.',coaching:'Sunday recovery runs make Monday feel better and improve your long-term adaptation.'}
+    ]
+  },
+  { title:'Week 39 · Race Week', badge:'Race Week', badgeClass:'badge-green',
+    mileage:'Target: ~18 miles · Easy only',
+    focus:'Final prep week. The work is done. Protect your legs.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'4 mi easy',key:false,rest:false,detail:'4 miles at 8:00–8:30/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Last full week. Stay off your feet when not running.'},
+      {name:'Tue',type:'Easy + Strides',desc:'5 mi + 6 strides',key:false,rest:false,detail:'5 miles easy + 6×100m strides at race pace. Just staying sharp.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Easy',desc:'4 mi easy',key:false,rest:false,detail:'4 miles easy. No workout this week. Just move.',coaching:''},
+      {name:'Fri',type:'Rest',desc:'Rest',key:false,rest:true,detail:'Full rest. Pack your bag, lay out your gear, eat well.',coaching:''},
+      {name:'Sat',type:'Easy Shakeout',desc:'4 mi easy',key:false,rest:false,detail:'4 miles easy. The last run before CIM. Keep it relaxed and enjoyable.',coaching:''},
+      {name:'Sun',type:'Rest',desc:'Travel / rest',key:false,rest:true,detail:'Travel to Sacramento or rest at home. Eat lots of carbs. Stay off your feet.',coaching:''}
+    ]
+  },
+  { title:'Week 40 · CIM Race Week', badge:'🏆 Race Day', badgeClass:'badge-green',
+    mileage:'CIM December 6 · Goal: 2:59:59',
+    focus:'Race week. Everything you\'ve done for 39 weeks has been for this.',
+    days:[
+      {name:'Mon',type:'Easy Run',desc:'3 mi easy',key:false,rest:false,detail:'3 miles at 8:30–9:00/mi. Conversational pace — if you can\'t speak in full sentences, slow down. HR under 145.',coaching:'Very easy. Last shakeout before race morning.'},
+      {name:'Tue',type:'Rest',desc:'Rest',key:false,rest:true,detail:'Full rest. Carb loading begins today. Aim for 10g carbs per kg body weight from pasta, rice, bagels. Cut fat and fiber.',coaching:''},
+      {name:'Wed',type:'Rest',desc:'Complete rest',key:false,rest:true,detail:'Full rest day. Let your body absorb the training stimulus from Tuesday.',coaching:'Recovery is when adaptation happens. Protect this day.'},
+      {name:'Thu',type:'Rest',desc:'Rest',key:false,rest:true,detail:'Full rest. Continue carb loading. Stay off your feet.',coaching:''},
+      {name:'Fri',type:'Shakeout',desc:'2 mi easy + strides',key:false,rest:false,detail:'2 miles easy + 4×100m strides at race pace. Just to stay loose. Race is tomorrow morning.',coaching:''},
+      {name:'Sat',type:'🏆 CIM RACE DAY',desc:'California International Marathon',key:true,rest:false,detail:'California International Marathon · December 6, 2026 · Sacramento → Folsom, CA\n\nGoal: 2:59:59 (6:52/mi)\n\nRace plan: First 10K at 6:55/mi. Miles 7–20 at 6:52/mi. If you feel strong at mile 20, let it come to you.\n\nFuel: gel at miles 5, 10, 15, 18, 21. Electrolytes at every aid station.',coaching:'You have done the work. Trust it. Run your race.'},
+      {name:'Sun',type:'Recovery',desc:'Rest & celebrate',key:false,rest:true,detail:'You ran a marathon yesterday. Rest, eat, and celebrate. The sub-3 journey is complete.',coaching:''}
     ]
   }
 ];
@@ -823,13 +1244,13 @@ renderWeek(i);
 }
 
 // ── Navigation ────────────────────────────────────────────────────────
-const PAGES = ['dashboard','plan','activities','races','nutrition','coach','warmup'];
+const PAGES = ['dashboard','plan','activities','races','nutrition','warmup'];
 function showPage(id) {
 document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
 document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
 document.getElementById('page-' + id).classList.add('active');
   const idx = PAGES.indexOf(id);
-  if (idx >= 0) document.querySelectorAll('nav button')[idx + 1].classList.add('active');
+  if (idx >= 0) document.querySelectorAll('nav button')[idx].classList.add('active');
   if (id === 'plan') renderWeek(currentWeek);
 }
 
@@ -1684,7 +2105,6 @@ function selectWarmup(type) {
 selectWarmup('easy');
 
 </script>
--e 
 
 <!-- WARM-UPS PAGE -->
 <div id="page-warmup" class="page">
@@ -1735,6 +2155,15 @@ selectWarmup('easy');
      CIM COACH ADDITIONS  — injected clean block, ffb00d9 base untouched
      ═══════════════════════════════════════════════════════════════════════ -->
 <script>
+// ── 0. apiHeaders() — used by sendChat and getFeedback in base script
+function apiHeaders() {
+  return {
+    'Content-Type': 'application/json',
+    'anthropic-version': '2023-06-01',
+    'anthropic-dangerous-direct-browser-calls': 'true'
+  };
+}
+
 // ── 1. Patch API calls to add required headers ───────────────────────────
 // We override the global fetch for anthropic API calls only
 (function() {
