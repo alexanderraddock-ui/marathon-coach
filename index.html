@@ -261,36 +261,6 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
   </div>
 
   
-  <div id="quote-card" style="background:#0f172a;border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;position:relative;overflow:hidden">
-    <div style="position:absolute;top:-10px;right:16px;font-size:80px;color:rgba(76,175,114,0.12);font-family:Georgia,serif;line-height:1;pointer-events:none">&ldquo;</div>
-    <div id="cim-quote-text" style="font-size:15px;color:#e2f5ea;line-height:1.65;font-style:italic;font-family:'Fraunces',serif;margin-bottom:10px">Loading today&rsquo;s quote&hellip;</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
-      <div>
-        <div id="cim-quote-author" style="font-size:12px;color:#4caf72;font-family:'DM Mono',monospace;font-weight:500"></div>
-        <div id="cim-quote-ctx" style="font-size:11px;color:#64748b;font-family:'DM Mono',monospace;margin-top:1px"></div>
-      </div>
-      <div id="cim-quote-day" style="font-size:11px;color:#334155;font-family:'DM Mono',monospace"></div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:16px">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px">
-      <div>
-        <h3 style="margin-bottom:2px">Fitness Trend</h3>
-        <div style="font-size:12px;color:var(--muted);font-family:var(--fm)">Riegel marathon projection from Strava &middot; updates on each sync</div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-size:22px;font-weight:600" id="trend-current">&mdash;</div>
-        <div style="font-size:11px;color:var(--muted);font-family:var(--fm)" id="trend-delta"></div>
-      </div>
-    </div>
-    <div style="position:relative;height:160px"><canvas id="fitness-chart"></canvas></div>
-    <div style="display:flex;gap:16px;margin-top:10px;font-size:12px;font-family:var(--fm);color:var(--muted);flex-wrap:wrap">
-      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#1a6b3a;display:inline-block;border-radius:2px"></span>Your fitness</span>
-      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#e2e8f0;display:inline-block;border-radius:2px;border:1px dashed #94a3b8"></span>Sub-3 target</span>
-      <span id="trend-note" style="margin-left:auto">Connect Strava to see your trend</span>
-    </div>
-  </div>
 <div class="row">
     <div class="col" style="min-width:300px">
       <div class="card">
@@ -611,38 +581,6 @@ code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-rad
     <div class="phase-chip" onclick="selectNutrition('race')">Race Day</div>
   </div>
 
-  <div id="quote-card" style="background:#0f172a;border-radius:var(--radius);padding:18px 22px;margin-bottom:16px;position:relative;overflow:hidden">
-    <div style="position:absolute;top:-10px;right:16px;font-size:80px;color:rgba(76,175,114,0.12);font-family:Georgia,serif;line-height:1;pointer-events:none">"</div>
-    <div id="quote-text" style="font-size:15px;color:#e2f5ea;line-height:1.65;font-style:italic;font-family:'Fraunces',serif;margin-bottom:10px">Loading today's quote...</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:6px">
-      <div>
-        <div id="quote-author" style="font-size:12px;color:#4caf72;font-family:'DM Mono',monospace;font-weight:500"></div>
-        <div id="quote-context" style="font-size:11px;color:#64748b;font-family:'DM Mono',monospace;margin-top:1px"></div>
-      </div>
-      <div style="font-size:11px;color:#334155;font-family:'DM Mono',monospace" id="quote-day"></div>
-    </div>
-  </div>
-
-  <div class="card" style="margin-bottom:16px">
-    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:12px">
-      <div>
-        <h3 style="margin-bottom:2px">Fitness Trend</h3>
-        <div style="font-size:12px;color:var(--muted);font-family:var(--fm)">Riegel marathon projection from Strava activities · updated on each sync</div>
-      </div>
-      <div style="text-align:right">
-        <div style="font-size:22px;font-weight:600" id="trend-current">–</div>
-        <div style="font-size:11px;color:var(--muted);font-family:var(--fm)" id="trend-delta"></div>
-      </div>
-    </div>
-    <div style="position:relative;height:160px">
-      <canvas id="fitness-chart"></canvas>
-    </div>
-    <div style="display:flex;gap:16px;margin-top:10px;font-size:12px;font-family:var(--fm);color:var(--muted);flex-wrap:wrap">
-      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#1a6b3a;display:inline-block;border-radius:2px"></span>Your fitness</span>
-      <span style="display:flex;align-items:center;gap:4px"><span style="width:10px;height:3px;background:#e2e8f0;display:inline-block;border-radius:2px;border:1px dashed #94a3b8"></span>Sub-3 target (2:59)</span>
-      <span id="trend-note" style="margin-left:auto;color:var(--muted)">Connect Strava to see your trend</span>
-    </div>
-  </div>
 
   <div class="row">
     <div class="col">
