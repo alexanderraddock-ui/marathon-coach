@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sub-3 Marathon Coach · CIM 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#1a6b3a;--green-l:#e8f5ed;--green-m:#4caf72;
+  --amber:#b45309;--amber-l:#fef3c7;
+  --red:#b91c1c;--red-l:#fee2e2;
+  --blue:#1e40af;--blue-l:#dbeafe;
+  --strava:#fc4c02;--strava-l:#fff3ee;
+  --slate:#475569;--slate-l:#f1f5f9;--slate-xl:#e2e8f0;
+  --text:#0f172a;--muted:#64748b;--border:#e2e8f0;
+  --radius:10px;--ff:'Fraunces',serif;--fm:'DM Mono',monospace;
+}
+html,body{height:100%}
+body{font-family:var(--ff);background:var(--slate-l);color:var(--text);font-size:15px;line-height:1.5}
+a{color:var(--strava)}
+
+nav{background:#0f172a;display:flex;align-items:center;gap:2px;padding:10px 20px;position:sticky;top:0;z-index:100;border-bottom:2px solid var(--green);flex-wrap:wrap}
+.nav-title{color:#e2f5ea;font-weight:600;font-size:15px;margin-right:10px;white-space:nowrap}
+.nav-title span{color:var(--green-m)}
+nav button{background:none;border:none;color:#94a3b8;font-family:var(--ff);font-size:13px;padding:6px 11px;border-radius:6px;cursor:pointer;transition:all .15s;white-space:nowrap}
+nav button.active{background:var(--green);color:#fff}
+nav button:hover:not(.active){color:#fff;background:#1e293b}
+
+.page{display:none;padding:20px;max-width:1100px;margin:0 auto}
+.page.active{display:block}
+h1{font-size:26px;font-weight:600;margin-bottom:4px}
+h2{font-size:20px;font-weight:600;margin-bottom:12px}
+h3{font-size:15px;font-weight:600;margin-bottom:8px}
+.sub{color:var(--muted);font-size:14px;margin-bottom:20px}
+
+.card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:16px}
+.row{display:flex;gap:16px;flex-wrap:wrap}
+.col{flex:1;min-width:220px}
+
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:20px}
+.stat{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:14px}
+.stat-label{font-size:12px;color:var(--muted);font-family:var(--fm);text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.stat-val{font-size:24px;font-weight:600}
+.stat-sub{font-size:12px;color:var(--muted);margin-top:2px}
+
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-family:var(--fm);font-weight:500}
+.badge-green{background:var(--green-l);color:var(--green)}
+.badge-amber{background:var(--amber-l);color:var(--amber)}
+.badge-red{background:var(--red-l);color:var(--red)}
+.badge-blue{background:var(--blue-l);color:var(--blue)}
+.badge-gray{background:var(--slate-xl);color:var(--slate)}
+.badge-strava{background:var(--strava-l);color:var(--strava)}
+
+.phase-bar{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:16px}
+.phase-chip{padding:5px 12px;border-radius:20px;font-size:12px;font-family:var(--fm);border:1px solid var(--border);cursor:pointer;background:#fff;transition:all .15s}
+.phase-chip.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.phase-chip:hover:not(.active){background:var(--slate-l)}
+
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:16px}
+@media(max-width:700px){.week-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:480px){.week-grid{grid-template-columns:repeat(2,1fr)}}
+.day-cell{background:#fff;border:1px solid var(--border);border-radius:8px;padding:8px;min-height:80px;cursor:pointer;transition:all .15s;position:relative}
+.day-cell:hover{border-color:var(--green-m);box-shadow:0 2px 8px rgba(0,0,0,.07)}
+.day-cell.done{background:var(--green-l);border-color:var(--green-m)}
+.day-cell.key-workout{border-left:3px solid var(--amber)}
+.day-cell.rest{background:var(--slate-l)}
+.day-name{font-size:10px;color:var(--muted);font-family:var(--fm);text-transform:uppercase;margin-bottom:4px}
+.day-type{font-size:11px;font-weight:600}
+.day-desc{font-size:10px;color:var(--muted);margin-top:2px;line-height:1.3}
+.done-check{position:absolute;top:6px;right:6px;width:14px;height:14px;background:var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff}
+
+.prog-wrap{background:var(--slate-xl);border-radius:20px;height:8px;margin:6px 0 12px}
+.prog-fill{border-radius:20px;height:8px;transition:width .4s}
+
+.ai-msg{background:var(--green-l);border:1px solid #a7d7bc;border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:14px;line-height:1.6}
+.ai-msg-header{display:flex;align-items:center;gap:6px;margin-bottom:8px;font-size:12px;font-family:var(--fm);color:var(--green);font-weight:500}
+.coach-dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+
+.btn{padding:10px 18px;border-radius:var(--radius);border:none;cursor:pointer;font-family:var(--ff);font-size:14px;font-weight:600;transition:all .15s}
+.btn-green{background:var(--green);color:#fff}
+.btn-green:hover{background:#155e32}
+.btn-strava{background:var(--strava);color:#fff}
+.btn-strava:hover{background:#d93f00}
+.btn-outline{background:#fff;color:var(--text);border:1px solid var(--border)}
+.btn-outline:hover{background:var(--slate-l)}
+.btn-sm{padding:6px 12px;font-size:12px}
+
+.chat-scroll{max-height:420px;overflow-y:auto;padding-right:4px;margin-bottom:12px}
+.chat-input-row{display:flex;gap:8px}
+.chat-input{flex:1;padding:10px 14px;border:1px solid var(--border);border-radius:var(--radius);font-family:var(--ff);font-size:14px;background:#fff;outline:none}
+.chat-input:focus{border-color:var(--green-m)}
+.user-msg{background:var(--slate-l);border:1px solid var(--border);border-radius:var(--radius);padding:14px;margin-bottom:12px;font-size:14px}
+
+.thinking{display:flex;gap:6px;align-items:center;padding:10px 14px;background:var(--green-l);border-radius:var(--radius);margin-bottom:12px;font-size:13px;color:var(--green)}
+.dot-anim span{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--green);animation:db 1.2s infinite;margin:0 1px}
+.dot-anim span:nth-child(2){animation-delay:.2s}.dot-anim span:nth-child(3){animation-delay:.4s}
+@keyframes db{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-5px)}}
+
+.profile-banner{background:#0f172a;border-radius:var(--radius);padding:20px;color:#fff;margin-bottom:20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.avatar{width:56px;height:56px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.profile-info h1{font-size:22px;color:#fff;margin-bottom:2px}
+.profile-info p{color:#94a3b8;font-size:13px}
+.goal-chip{background:rgba(76,175,114,.15);color:var(--green-m);padding:4px 12px;border-radius:20px;font-size:12px;font-family:var(--fm);border:1px solid rgba(76,175,114,.3);display:inline-block}
+.race-countdown{margin-left:auto;text-align:right}
+.countdown-num{font-size:36px;font-weight:600;color:var(--green-m);font-family:var(--fm);line-height:1}
+.countdown-label{font-size:11px;color:#94a3b8;font-family:var(--fm);text-transform:uppercase}
+
+.timeline-row{display:flex;gap:0;margin-bottom:20px}
+.phase-block{flex:1;padding:10px;border-right:2px solid var(--slate-xl)}
+.phase-block:last-child{border-right:none}
+.phase-block.current{background:rgba(26,107,58,.06);border-radius:8px}
+.phase-label{font-size:11px;font-family:var(--fm);font-weight:500;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px}
+.phase-weeks{font-size:12px;color:var(--muted)}
+
+.race-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;align-items:flex-start;gap:16px;margin-bottom:10px}
+.race-icon{width:44px;height:44px;border-radius:8px;background:#0f172a;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.race-name-text{font-weight:600;font-size:15px}
+.race-details-text{font-size:12px;color:var(--muted);font-family:var(--fm);margin-top:2px}
+.race-purpose{font-size:12px;margin-top:4px;color:var(--blue)}
+
+.macro-row{display:flex;gap:10px;margin:12px 0}
+.macro{flex:1;text-align:center;background:var(--slate-l);border-radius:8px;padding:10px}
+.macro-val{font-size:20px;font-weight:600}
+.macro-label{font-size:11px;color:var(--muted);font-family:var(--fm)}
+.food-item{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);font-size:14px}
+.food-item:last-child{border-bottom:none}
+
+/* Strava / Activities */
+.tabs{display:flex;gap:2px;margin-bottom:16px;border-bottom:2px solid var(--border)}
+.tab{padding:8px 16px;background:none;border:none;font-family:var(--ff);font-size:14px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .15s}
+.tab.active{color:var(--green);border-bottom-color:var(--green);font-weight:600}
+
+.step{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+.step-num{width:26px;height:26px;border-radius:50%;background:#0f172a;color:#fff;font-size:12px;font-family:var(--fm);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px}
+.step-title{font-size:14px;font-weight:600;margin-bottom:2px}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.5}
+code{font-family:var(--fm);background:var(--slate-xl);padding:1px 5px;border-radius:4px;font-size:12px}
+
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:13px;font-weight:600;margin-bottom:5px;font-family:var(--fm);color:var(--slate)}
+.form-input{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-family:var(--fm);font-size:13px;background:#fff;outline:none;transition:border-color .15s}
+.form-input:focus{border-color:var(--strava)}
+.form-hint{font-size:11px;color:var(--muted);margin-top:4px;font-family:var(--fm)}
+
+.conn-status{display:inline-flex;align-items:center;gap:6px;padding:5px 12px;border-radius:20px;font-size:12px;font-family:var(--fm);font-weight:500}
+.conn-status.off{background:var(--slate-xl);color:var(--slate)}
+.conn-status.on{background:var(--green-l);color:var(--green)}
+.conn-dot{width:7px;height:7px;border-radius:50%}
+.conn-dot.off{background:var(--slate)}
+.conn-dot.on{background:var(--green);animation:pulse 2s infinite}
+
+.activity{background:#fff;border:1px solid var(--border);border-radius:8px;padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+.activity.matched{border-left:3px solid var(--green-m)}
+.activity.unmatched{border-left:3px solid var(--slate-xl)}
+.act-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0;background:#0f172a}
+.act-meta{flex:1;min-width:160px}
+.act-name{font-size:13px;font-weight:600}
+.act-stats{font-size:11px;color:var(--muted);font-family:var(--fm);margin-top:2px}
+.act-actions{display:flex;gap:6px;align-items:center}
+
+.sync-prog-wrap{background:var(--slate-xl);border-radius:20px;height:6px;margin:6px 0}
+.sync-prog-fill{border-radius:20px;height:6px;background:var(--strava);transition:width .3s}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-title"><span>⚡</span> Sub-3 Coach</div>
+  <button class="active" onclick="showPage('dashboard')">Dashboard</button>
+  <button onclick="showPage('plan')">Training Plan</button>
+  <button onclick="showPage('activities')">Activities</button>
+  <button onclick="showPage('races')">Races</button>
+  <button onclick="showPage('nutrition')">Nutrition</button>
+  <button onclick="showPage('coach')">AI Coach</button>
+</nav>
+
+<!-- ═══════════════════════════════════════════════════ DASHBOARD -->
+<div id="page-dashboard" class="page active">
+  <div class="profile-banner">
+    <div class="avatar">🏃</div>
+    <div class="profile-info">
+      <h1>Your Sub-3 Journey</h1>
+      <p>California International Marathon · December 6, 2026</p>
+      <div style="margin-top:8px;display:flex;gap:8px;flex-wrap:wrap">
+        <span class="goal-chip">Goal: 2:59:59</span>
+        <span class="goal-chip">PR: 3:29:00 (NYC 2024)</span>
+        <span class="goal-chip" id="dash-phase-chip">Phase: Base Building</span>
+      </div>
+    </div>
+    <div class="race-countdown">
+      <div class="countdown-num" id="countdown-days">–</div>
+      <div class="countdown-label">days to CIM</div>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-label">This Week</div>
+      <div class="stat-val">38 mi</div>
+      <div class="stat-sub">of 42 mi planned</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Current Phase</div>
+      <div class="stat-val" style="font-size:17px">Base Build</div>
+      <div class="stat-sub">Wks 1–12 · Wk 6 of 12</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Est. Fitness</div>
+      <div class="stat-val">3:12</div>
+      <div class="stat-sub">marathon equiv.</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Workouts Done</div>
+      <div class="stat-val" id="dash-done-count">0</div>
+      <div class="stat-sub">marked complete</div>
+    </div>
+    <div class="stat">
+      <div class="stat-label">Training Load</div>
+      <div class="stat-val" style="color:var(--amber)">78</div>
+      <div class="stat-sub">TSS · optimal 75–85</div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col" style="min-width:300px">
+      <div class="card">
+        <h3>Training Phase Overview</h3>
+        <div class="timeline-row">
+          <div class="phase-block current">
+            <div class="phase-label" style="color:var(--green)">Base</div>
+            <div class="phase-weeks">Wks 1–12</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">Aerobic foundation<br>35–55 mi/wk</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-label" style="color:var(--amber)">Build</div>
+            <div class="phase-weeks">Wks 13–24</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">Threshold + LRs<br>50–65 mi/wk</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-label" style="color:var(--red)">Peak</div>
+            <div class="phase-weeks">Wks 25–36</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">Race-specific<br>60–70 mi/wk</div>
+          </div>
+          <div class="phase-block">
+            <div class="phase-label" style="color:var(--blue)">Taper</div>
+            <div class="phase-weeks">Wks 37–40</div>
+            <div style="font-size:10px;color:var(--muted);margin-top:2px">Sharpen + rest<br>30–40 mi/wk</div>
+          </div>
+        </div>
+        <div class="prog-wrap"><div class="prog-fill" style="width:15%;background:linear-gradient(90deg,var(--green-m),var(--green))"></div></div>
+        <div style="font-size:12px;color:var(--muted);font-family:var(--fm)">15% complete · Week 6 of 40</div>
+      </div>
+      <div class="card">
+        <h3>This Week's Key Sessions</h3>
+        <div style="border-left:3px solid var(--amber);padding-left:10px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:600">Wednesday · Tempo Run</div>
+          <div style="font-size:12px;color:var(--muted)">2mi WU + 5mi @ 6:45/mi + 2mi CD</div>
+          <span class="badge badge-amber">Key Workout</span>
+        </div>
+        <div style="border-left:3px solid var(--blue);padding-left:10px;margin-bottom:10px">
+          <div style="font-size:13px;font-weight:600">Saturday · Long Run</div>
+          <div style="font-size:12px;color:var(--muted)">16 miles @ 7:45–8:15/mi easy</div>
+          <span class="badge badge-blue">Long Run</span>
+        </div>
+        <div style="border-left:3px solid var(--slate);padding-left:10px">
+          <div style="font-size:13px;font-weight:600">Thursday · Strength</div>
+          <div style="font-size:12px;color:var(--muted)">45 min gym: single-leg, hip strength</div>
+          <span class="badge badge-gray">Cross Train</span>
+        </div>
+      </div>
+    </div>
+    <div class="col" style="min-width:280px">
+      <div class="card">
+        <h3>Coach Insight</h3>
+        <div class="ai-msg">
+          <div class="ai-msg-header"><div class="coach-dot"></div> Coach · Today</div>
+          You're in great shape for Week 6. Your aerobic base is building well — Wednesday's tempo is the priority session. Your NYC 3:29 translates to roughly 6:50/mi fitness right now; by December we need 6:50/mi to feel like your <em>easy</em> pace. Focus on getting the long run done easy — resist the urge to push the pace.
+        </div>
+        <button class="btn btn-outline" style="width:100%;font-size:13px" onclick="showPage('coach');setTimeout(()=>document.getElementById('chat-input').focus(),100)">Ask coach a question →</button>
+      </div>
+      <div class="card">
+        <h3>Upcoming Benchmarks</h3>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)">
+          <div style="font-size:20px">🏅</div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Brooklyn Half</div><div style="font-size:11px;color:var(--muted)">May 17 · ~9 weeks away</div></div>
+          <span class="badge badge-blue">13.1 mi</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)">
+          <div style="font-size:20px">🏅</div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">Chicago 20 Miler</div><div style="font-size:11px;color:var(--muted)">Sep 20 · ~6 months away</div></div>
+          <span class="badge badge-amber">20 mi</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:10px;padding:8px 0">
+          <div style="font-size:20px">🎯</div>
+          <div style="flex:1"><div style="font-size:13px;font-weight:600">CIM 2026</div><div style="font-size:11px;color:var(--muted)">Dec 6 · A-Race</div></div>
+          <span class="badge badge-green">26.2 mi</span>
+        </div>
+      </div>
+      <div class="card" id="strava-dash-card">
+        <h3>Strava Sync</h3>
+        <div id="strava-dash-status" style="font-size:13px;color:var(--muted)">Not connected. <a href="#" onclick="showPage('activities');return false">Connect Strava →</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ TRAINING PLAN -->
+<div id="page-plan" class="page">
+  <h1>Training Plan</h1>
+  <p class="sub">40-week structured plan · NYC 3:29 → CIM Sub-3:00</p>
+  <div class="phase-bar" id="phase-bar">
+    <div class="phase-chip active" onclick="selectPhase(0)">Week 6 (Current)</div>
+    <div class="phase-chip" onclick="selectPhase(1)">Week 7</div>
+    <div class="phase-chip" onclick="selectPhase(2)">Week 8</div>
+    <div class="phase-chip" onclick="selectPhase(3)">Week 10</div>
+    <div class="phase-chip" onclick="selectPhase(4)">Week 12 (Recovery)</div>
+    <div class="phase-chip" onclick="selectPhase(5)">Week 16 (Build)</div>
+    <div class="phase-chip" onclick="selectPhase(6)">Week 24 (Peak)</div>
+    <div class="phase-chip" onclick="selectPhase(7)">Week 38 (Taper)</div>
+  </div>
+  <div class="card" style="margin-bottom:10px">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px">
+      <div>
+        <span id="week-title" style="font-size:17px;font-weight:600">Week 6 · Base Phase</span>
+        <span id="week-badge" class="badge badge-green" style="margin-left:8px">Base Building</span>
+      </div>
+      <div style="font-size:13px;color:var(--muted)" id="week-mileage">Target: 42 miles · Key: Tempo + Long Run</div>
+    </div>
+    <div style="margin-top:8px;font-size:13px;color:var(--slate)" id="week-focus">Focus: Building aerobic base with moderate intensity. Keep easy runs truly easy (7:50–8:30/mi).</div>
+  </div>
+  <div class="week-grid" id="week-grid"></div>
+  <div class="card" id="workout-detail" style="display:none">
+    <div style="display:flex;justify-content:space-between;align-items:start;flex-wrap:wrap;gap:8px">
+      <div>
+        <h3 id="wd-title">Workout Detail</h3>
+        <div id="wd-meta" style="font-size:13px;color:var(--muted)"></div>
+      </div>
+      <button class="btn btn-green" onclick="markDone()" id="mark-done-btn">Mark Complete</button>
+    </div>
+    <div id="wd-desc" style="margin-top:10px;font-size:14px;line-height:1.7"></div>
+    <div id="wd-coaching" style="margin-top:12px"></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ ACTIVITIES -->
+<div id="page-activities" class="page">
+  <h1>Activities</h1>
+  <p class="sub">Sync your Garmin activities via Strava to match them to your plan</p>
+
+  <div class="card">
+    <div class="tabs">
+      <button class="tab active" id="tab-btn-setup" onclick="switchTab('setup')">1. API Setup</button>
+      <button class="tab" id="tab-btn-connect" onclick="switchTab('connect')">2. Authorize</button>
+      <button class="tab" id="tab-btn-import" onclick="switchTab('import')">3. Activities</button>
+    </div>
+
+    <!-- SETUP -->
+    <div id="tab-setup">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <div class="step-title">Create a Strava API app</div>
+          <div class="step-desc">Go to <a href="https://www.strava.com/settings/api" target="_blank">strava.com/settings/api</a> → create a new application. For "Authorization Callback Domain" enter the domain of this site (e.g. <code>yourusername.github.io</code>).</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <div class="step-title">Make sure Garmin auto-syncs to Strava</div>
+          <div class="step-desc">Garmin Connect app → Menu → Connected Apps → Strava → enable sync. Activities will appear in Strava within minutes of finishing.</div>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <div class="step-title">Enter your Client ID and Secret below</div>
+          <div class="step-desc">These are shown on the Strava API settings page after you create your app. The Secret is only stored in your browser — it never leaves your device.</div>
+        </div>
+      </div>
+      <div style="max-width:440px;margin-top:18px">
+        <div class="form-group">
+          <label class="form-label">Strava Client ID</label>
+          <input class="form-input" id="client-id" placeholder="e.g. 123456">
+          <div class="form-hint">Numbers only — shown on strava.com/settings/api</div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Strava Client Secret</label>
+          <input class="form-input" id="client-secret" type="password" placeholder="40-character hex string">
+          <div class="form-hint">Stored only in your browser's localStorage</div>
+        </div>
+        <button class="btn btn-strava" onclick="saveCredentials()" style="width:100%">Save &amp; Continue →</button>
+      </div>
+    </div>
+
+    <!-- AUTHORIZE -->
+    <div id="tab-connect" style="display:none;text-align:center;padding:16px 0">
+      <div style="font-size:40px;margin-bottom:12px">🔗</div>
+      <h3 style="margin-bottom:6px">Authorize with Strava</h3>
+      <p style="font-size:13px;color:var(--muted);max-width:380px;margin:0 auto 18px">You'll be redirected to Strava to grant read-only access to your activities. The app cannot modify any data.</p>
+      <button class="btn btn-strava" id="oauth-btn" onclick="startOAuth()" style="font-size:15px;padding:12px 28px">Connect with Strava</button>
+      <div style="margin-top:14px"><span class="conn-status off" id="conn-badge"><span class="conn-dot off" id="conn-dot"></span><span id="conn-text">Not connected</span></span></div>
+      <div id="oauth-error" style="color:var(--strava);font-size:13px;margin-top:10px;display:none"></div>
+    </div>
+
+    <!-- IMPORT -->
+    <div id="tab-import" style="display:none">
+      <div id="import-locked" style="text-align:center;padding:20px;color:var(--muted);font-size:14px">Complete steps 1 and 2 first.</div>
+      <div id="import-ready" style="display:none">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:14px">
+          <div>
+            <span class="conn-status on"><span class="conn-dot on"></span><span id="athlete-name-label">Connected</span></span>
+          </div>
+          <div style="display:flex;gap:8px">
+            <button class="btn btn-outline btn-sm" onclick="fetchActivities()">Refresh</button>
+            <button class="btn btn-strava btn-sm" onclick="matchAll()">Match to Plan</button>
+            <button class="btn btn-outline btn-sm" onclick="disconnectStrava()">Disconnect</button>
+          </div>
+        </div>
+        <div id="sync-progress" style="display:none;margin-bottom:12px">
+          <div style="font-size:13px;color:var(--muted);margin-bottom:4px" id="sync-msg">Fetching...</div>
+          <div class="sync-prog-wrap"><div class="sync-prog-fill" id="sync-bar" style="width:0%"></div></div>
+        </div>
+        <div id="activities-container"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ RACES -->
+<div id="page-races" class="page">
+  <h1>Race Calendar</h1>
+  <p class="sub">Benchmark races to test fitness and build race-day experience</p>
+
+  <div class="card" style="background:var(--green-l);border-color:#a7d7bc">
+    <div style="font-size:12px;color:var(--green);font-family:var(--fm);font-weight:500;margin-bottom:6px">📍 A-RACE TARGET</div>
+    <div style="font-size:20px;font-weight:600">California International Marathon</div>
+    <div style="font-size:13px;color:var(--muted);font-family:var(--fm);margin-top:4px">December 6, 2026 · Sacramento → Folsom, CA · Net downhill course</div>
+    <div style="font-size:14px;margin-top:8px">Goal: 2:59:59 · Pace: 6:52/mi · <span class="badge badge-green" id="cim-days-badge">266 days away</span></div>
+    <div style="font-size:13px;color:var(--slate);margin-top:8px;line-height:1.6">CIM is one of the fastest December marathons — net downhill, historically cool temps (40–55°F), flat course. Perfect setup for a PR attempt. Boston qualifier cutoff for your age group is 3:00:00.</div>
+  </div>
+
+  <h3 style="margin:16px 0 10px">Recommended Tune-Up Races</h3>
+
+  <div class="race-card">
+    <div class="race-icon">🌸</div>
+    <div style="flex:1">
+      <div class="race-name-text">Cherry Blossom 10-Miler</div>
+      <div class="race-details-text">April 6, 2026 · Washington D.C. · 10 miles</div>
+      <div class="race-purpose">First fitness test at end of base phase. Target 68–70 min (6:48–7:00/mi) to gauge aerobic development.</div>
+    </div>
+    <span class="badge badge-gray">C Race</span>
+  </div>
+  <div class="race-card">
+    <div class="race-icon">🗽</div>
+    <div style="flex:1">
+      <div class="race-name-text">Brooklyn Half Marathon</div>
+      <div class="race-details-text">May 17, 2026 · Brooklyn, NY · 13.1 miles</div>
+      <div class="race-purpose">Key benchmark. Sub-1:28 (6:42/mi) = on track for sub-3. This is your most important tune-up race.</div>
+    </div>
+    <span class="badge badge-amber">B Race</span>
+  </div>
+  <div class="race-card">
+    <div class="race-icon">🌉</div>
+    <div style="flex:1">
+      <div class="race-name-text">San Francisco Half Marathon</div>
+      <div class="race-details-text">July 26, 2026 · San Francisco, CA · 13.1 miles</div>
+      <div class="race-purpose">Mid-peak fitness check. Harder course — use as a hard training run at 85% effort, not a PR attempt.</div>
+    </div>
+    <span class="badge badge-gray">C Race</span>
+  </div>
+  <div class="race-card">
+    <div class="race-icon">🍂</div>
+    <div style="flex:1">
+      <div class="race-name-text">Chicago 20-Miler (or equivalent)</div>
+      <div class="race-details-text">September 20, 2026 · Chicago, IL · 20 miles</div>
+      <div class="race-purpose">Final long race simulation before taper. Target 7:00–7:10/mi. Last big effort of the cycle.</div>
+    </div>
+    <span class="badge badge-amber">B Race</span>
+  </div>
+  <div class="race-card">
+    <div class="race-icon">🚫</div>
+    <div style="flex:1">
+      <div class="race-name-text">NYC Marathon</div>
+      <div class="race-details-text">November 1, 2026 · New York, NY</div>
+      <div class="race-purpose">Do NOT race — you'll be 5 weeks out from CIM and deep in taper. Spectate instead for motivation.</div>
+    </div>
+    <span class="badge badge-red">Skip</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ NUTRITION -->
+<div id="page-nutrition" class="page">
+  <h1>Nutrition Plan</h1>
+  <p class="sub">Periodized nutrition to fuel your sub-3 training</p>
+
+  <div class="phase-bar" id="nut-phase-bar">
+    <div class="phase-chip active" onclick="selectNutrition('base')">Base Phase</div>
+    <div class="phase-chip" onclick="selectNutrition('build')">Build Phase</div>
+    <div class="phase-chip" onclick="selectNutrition('peak')">Peak Phase</div>
+    <div class="phase-chip" onclick="selectNutrition('race')">Race Day</div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <h3 id="nut-phase-title">Base Phase Daily Targets</h3>
+        <div class="macro-row">
+          <div class="macro"><div class="macro-val" id="nut-cal">2,850</div><div class="macro-label">Calories</div></div>
+          <div class="macro"><div class="macro-val" id="nut-carb" style="color:var(--amber)">380g</div><div class="macro-label">Carbs</div></div>
+          <div class="macro"><div class="macro-val" id="nut-pro" style="color:var(--blue)">155g</div><div class="macro-label">Protein</div></div>
+          <div class="macro"><div class="macro-val" id="nut-fat" style="color:var(--green)">82g</div><div class="macro-label">Fat</div></div>
+        </div>
+        <div style="font-size:13px;color:var(--slate);line-height:1.6" id="nut-notes">Base phase: moderate carb intake to support aerobic development. Prioritize complex carbs (oats, rice, sweet potato) and lean protein for recovery. Increase carbs ~20% on long run days.</div>
+      </div>
+      <div class="card">
+        <h3>Long Run Fueling (16+ miles)</h3>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">2 hrs before</div><div style="font-size:12px;color:var(--muted)">Oatmeal + banana + black coffee</div></div><span style="font-size:13px;color:var(--muted)">~500 cal</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Every 45 min during</div><div style="font-size:12px;color:var(--muted)">Maurten 100 gel or Huma gel</div></div><span style="font-size:13px;color:var(--muted)">100 cal / 25g carb</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Within 30 min after</div><div style="font-size:12px;color:var(--muted)">Recovery shake: whey + chocolate milk</div></div><span style="font-size:13px;color:var(--muted)">~400 cal</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Hydration target</div><div style="font-size:12px;color:var(--muted)">Electrolytes (500mg sodium/hr) + water</div></div><span style="font-size:13px;color:var(--muted)">16–20 oz/hr</span></div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <h3>Race Day Fueling Plan</h3>
+        <div class="ai-msg">
+          <div class="ai-msg-header"><div class="coach-dot"></div> Coach · CIM Race Plan</div>
+          For sub-3 you need <strong>60–90g carbs/hour</strong>. CIM has aid stations every mile. Plan: Maurten 320 drink in first 5K, then gel at miles 5, 10, 15, 18, 21. Practice this exact protocol on long runs from Week 20 onward — your gut needs training too.
+        </div>
+        <div style="font-size:13px;color:var(--slate);margin-top:4px;line-height:1.6">
+          <strong>Carb loading:</strong> 2 days before, aim for 10g/kg body weight from pasta, rice, bagels. Cut fat and fiber. Race morning: 150g carbs 2.5hrs before start, then sip electrolyte drink to the line.
+        </div>
+      </div>
+      <div class="card">
+        <h3>Sample High-Mileage Day</h3>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Breakfast</div><div style="font-size:12px;color:var(--muted)">2 cups oats, 2 eggs, banana, OJ</div></div><span style="font-size:13px;color:var(--muted)">650 cal</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Pre-run snack</div><div style="font-size:12px;color:var(--muted)">Toast + peanut butter + honey</div></div><span style="font-size:13px;color:var(--muted)">280 cal</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Lunch</div><div style="font-size:12px;color:var(--muted)">Rice bowl, chicken, avocado, veg</div></div><span style="font-size:13px;color:var(--muted)">720 cal</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Dinner</div><div style="font-size:12px;color:var(--muted)">Salmon, sweet potato, broccoli, bread</div></div><span style="font-size:13px;color:var(--muted)">800 cal</span></div>
+        <div class="food-item"><div><div style="font-size:13px;font-weight:600">Evening snack</div><div style="font-size:12px;color:var(--muted)">Greek yogurt + granola + berries</div></div><span style="font-size:13px;color:var(--muted)">350 cal</span></div>
+        <div style="font-weight:600;font-size:14px;text-align:right;padding-top:8px;border-top:1px solid var(--border)">Total: ~2,800 cal</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════ AI COACH -->
+<div id="page-coach" class="page">
+  <h1>AI Coach</h1>
+  <p class="sub">Ask anything about training, pacing, nutrition, or race strategy</p>
+  <div class="card">
+    <div class="chat-scroll" id="chat-messages">
+      <div class="ai-msg">
+        <div class="ai-msg-header"><div class="coach-dot"></div> Coach · Welcome</div>
+        Hey! I'm your AI running coach for the CIM 2026 campaign. You're targeting sub-3:00 from a 3:29 PR — that's a 29-minute improvement, which is ambitious but very achievable over 40 structured weeks. I know your plan inside out. Ask me anything: pacing, how a workout went, what to eat before a race, injury concerns, or how to adjust when life gets busy.
+      </div>
+    </div>
+    <div class="chat-input-row">
+      <input id="chat-input" class="chat-input" placeholder="Ask your coach..." onkeydown="if(event.key==='Enter')sendChat()">
+      <button class="btn btn-green" onclick="sendChat()">Send</button>
+    </div>
+  </div>
+  <div style="margin-top:4px">
+    <div style="font-size:12px;color:var(--muted);margin-bottom:8px;font-family:var(--fm)">QUICK QUESTIONS</div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('What pace should my long runs be right now in Week 6?')">Long run pace?</button>
+      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('How realistic is breaking 3 hours from a 3:29 PR?')">How to break 3:00?</button>
+      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('My legs feel really tired this week — should I skip the tempo?')">Tired legs advice</button>
+      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('What are the most important strength exercises for marathon runners?')">Key strength work</button>
+      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('How should I pace the first half at CIM to run sub-3?')">CIM race strategy</button>
+      <button class="btn btn-outline" style="font-size:12px;padding:6px 12px" onclick="quickQ('What does my Yasso 800 pace need to be to break 3 hours?')">Yasso 800 target?</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── Training plan data ────────────────────────────────────────────────
+const WEEKS = [
+  { title:"Week 6 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
+    mileage:"Target: 42 miles · Key: Tempo + Long Run",
+    focus:"Building aerobic base. Keep easy runs truly easy (7:50–8:30/mi). The tempo on Wednesday is the priority workout.",
+    days:[
+      {name:"Mon",type:"Rest / Mobility",desc:"Rest or 20 min yoga",rest:true,detail:"Complete rest day. Optional: 20 min of yoga or stretching, foam rolling. No running.",coaching:"Recovery is training. Today's rest makes tomorrow's easy run better."},
+      {name:"Tue",type:"Easy Run",desc:"8 mi @ 7:55–8:20/mi",key:false,detail:"8 miles easy. Heart rate should stay under 145. Conversational pace — if you can't say a full sentence, slow down.",coaching:"If it feels too easy, it probably is easy. That's correct."},
+      {name:"Wed",type:"Tempo",desc:"5 mi tempo @ 6:45/mi",key:true,detail:"2mi easy warmup + 5mi @ 6:42–6:48/mi + 1.5mi cooldown. Total: ~8.5mi.\n\nTempo pace is 'comfortably hard' — you could say a few words but not a sentence.",coaching:"Key workout of the week. Don't run faster than prescribed. HR target 158–168. Above 170 → ease off."},
+      {name:"Thu",type:"Strength + Easy",desc:"5 mi easy + 45 min gym",key:false,detail:"Morning: 5 miles easy. Afternoon/evening: 45 min strength.\n\nFocus: single-leg squats, hip thrusts, calf raises, Copenhagen planks, dead bugs.",coaching:"Hip and glute strength is the #1 injury prevention tool for marathoners."},
+      {name:"Fri",type:"Rest / Strides",desc:"Rest + 4×100m strides",rest:false,detail:"Full rest or very easy 20 min jog. If you run, finish with 4×100m strides at 5K effort with full recovery between each.",coaching:"Strides maintain leg turnover and neuromuscular sharpness during base phase."},
+      {name:"Sat",type:"Long Run",desc:"16 mi @ 8:05–8:30/mi",key:true,detail:"16 miles. True easy effort throughout.\n\nPractice fueling: take a gel every 45 min. Hydrate with electrolytes.\n\nDo NOT check pace mid-run — run by feel and HR.",coaching:"Long runs build your aerobic engine. The pace is irrelevant — time on feet is what matters."},
+      {name:"Sun",type:"Recovery Run",desc:"4–5 mi very easy",rest:false,detail:"4–5 miles. Should feel completely effortless. HR under 130 if possible. Shake-out run.",coaching:"Sunday easy runs flush lactate and help your legs recover faster."}
+    ]
+  },
+  { title:"Week 7 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
+    mileage:"Target: 44 miles · Key: 2×20min threshold + Long Run",
+    focus:"Slight mileage uptick. Wednesday introduces split threshold blocks — two 20-min efforts with easy recovery between.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Complete rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Tue",type:"Easy",desc:"9 mi easy",key:false,detail:"9 miles at 7:55–8:20/mi.",coaching:""},
+      {name:"Wed",type:"Threshold Intervals",desc:"2×20min @ LT",key:true,detail:"2mi WU + 20min @ 6:52/mi + 5min easy + 20min @ 6:52/mi + 2mi CD. Total ~10mi.",coaching:"Threshold runs at the right intensity are the single biggest stimulus for marathon fitness."},
+      {name:"Thu",type:"Easy + Strength",desc:"5 mi + gym",key:false,detail:"5 miles easy + 45 min strength.",coaching:""},
+      {name:"Fri",type:"Rest",desc:"Rest or yoga",rest:true,detail:"Rest or 20 min yoga.",coaching:""},
+      {name:"Sat",type:"Long Run",desc:"17 mi easy",key:true,detail:"17 miles easy. Keep effort controlled throughout.",coaching:""},
+      {name:"Sun",type:"Recovery",desc:"5 mi recovery",rest:false,detail:"5 miles very easy.",coaching:""}
+    ]
+  },
+  { title:"Week 8 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
+    mileage:"Target: 46 miles · Key: Yasso 800s + Long Run",
+    focus:"First speed work of the cycle. Yasso 800s are a classic predictor workout — your 800m pace in mm:ss predicts your marathon time in hh:mm.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Complete rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Tue",type:"Easy",desc:"8 mi easy",key:false,detail:"8 miles easy.",coaching:""},
+      {name:"Wed",type:"Track: Yasso 800s",desc:"6×800m @ 3:00",key:true,detail:"2mi WU + 6×800m in 3:00 (2:00 jog recovery) + 2mi CD. Total: ~9mi.\n\nYasso 800s: pace in min:sec = marathon goal in hrs:min. Sub-3 marathon = 3:00 per 800m.",coaching:"You start with 6 reps. By Week 24 you'll do 10. Track the progression — it's motivating."},
+      {name:"Thu",type:"Easy + Strength",desc:"6 mi + gym",key:false,detail:"6 miles + 45 min gym.",coaching:""},
+      {name:"Fri",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Sat",type:"Long Run",desc:"18 mi easy",key:true,detail:"18 miles. Last 3 miles at marathon effort (6:50–7:00/mi).\n\nYour first 'quality finish' long run.",coaching:"Marathon-pace miles at the end of long runs are a key sub-3 training stimulus."},
+      {name:"Sun",type:"Recovery",desc:"5 mi recovery",rest:false,detail:"5 miles easy.",coaching:""}
+    ]
+  },
+  { title:"Week 10 · Base Phase", badge:"Base Building", badgeClass:"badge-green",
+    mileage:"Target: 50 miles · Key: Progression Run + First 20-Miler",
+    focus:"First 20-miler of the cycle. A major milestone. Progression run on Wednesday. You are now running 50 miles per week.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Tue",type:"Easy",desc:"10 mi easy",key:false,detail:"10 miles easy.",coaching:""},
+      {name:"Wed",type:"Progression Run",desc:"10 mi: 8:00→7:00/mi",key:true,detail:"10 miles starting at 8:00/mi, gradually building to 7:00/mi over the final 2 miles.",coaching:"Progression runs teach your body to push when fatigued — exactly what miles 20–26 require."},
+      {name:"Thu",type:"Easy + Strength",desc:"6 mi + gym",key:false,detail:"6 miles + gym.",coaching:""},
+      {name:"Fri",type:"Easy + Strides",desc:"5 mi + 4 strides",key:false,detail:"5 miles easy + 4×100m strides.",coaching:""},
+      {name:"Sat",type:"First 20-Miler",desc:"20 mi easy",key:true,detail:"Your first 20-miler. 20 miles at 8:00–8:30/mi.\n\nFuel every 45 min. Treat as a race-day rehearsal for pacing and nutrition strategy.",coaching:"Mental milestone: you can run 20 miles. The marathon is just a 10K more."},
+      {name:"Sun",type:"Recovery",desc:"4 mi very easy",rest:false,detail:"Very easy 4 miles.",coaching:""}
+    ]
+  },
+  { title:"Week 12 · Recovery Week", badge:"Recovery", badgeClass:"badge-blue",
+    mileage:"Target: 35 miles · Planned down week",
+    focus:"End of base block. Mileage drops 30%. No hard workouts. Your body is adapting — let it. You'll feel fresh and strong heading into the Build phase.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Full rest.",coaching:""},
+      {name:"Tue",type:"Easy",desc:"7 mi easy",key:false,detail:"7 miles very easy.",coaching:""},
+      {name:"Wed",type:"Easy",desc:"6 mi easy",key:false,detail:"Easy run only — no workout this week.",coaching:""},
+      {name:"Thu",type:"Strength",desc:"Gym only",key:false,detail:"45 min strength work only. No running.",coaching:""},
+      {name:"Fri",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Sat",type:"Down Long Run",desc:"14 mi easy",key:false,detail:"Down week long run: 14 miles easy.",coaching:""},
+      {name:"Sun",type:"Easy",desc:"5 mi recovery",rest:false,detail:"Easy 5 miles.",coaching:""}
+    ]
+  },
+  { title:"Week 16 · Build Phase", badge:"Build Phase", badgeClass:"badge-amber",
+    mileage:"Target: 58 miles · Key: Marathon Pace + Long Run 22mi",
+    focus:"Welcome to the Build phase. Intensity and volume both increase. Marathon-pace work becomes central. Every long run now has quality miles embedded.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Tue",type:"Easy + Strides",desc:"9 mi + 6 strides",key:false,detail:"9 miles easy with 6×100m strides.",coaching:""},
+      {name:"Wed",type:"Marathon Pace Run",desc:"12 mi w/ 8 @ 6:52/mi",key:true,detail:"2mi WU + 8mi @ marathon goal pace (6:50–6:55/mi) + 2mi CD. Total: 12mi.\n\nMarathon pace should feel controlled and sustainable, not labored.",coaching:"Marathon-pace running is the most specific training there is. These miles are gold."},
+      {name:"Thu",type:"Easy + Strength",desc:"7 mi + gym",key:false,detail:"7 miles + 45 min gym.",coaching:""},
+      {name:"Fri",type:"Easy",desc:"8 mi easy",key:false,detail:"8 miles easy.",coaching:""},
+      {name:"Sat",type:"Long Run 22mi",desc:"22 mi w/ 8 @ MP",key:true,detail:"22 miles: first 14 easy, last 8 at marathon pace (6:50–6:55/mi).\n\nThis is your hardest long run so far. Fuel aggressively — gel every 40 minutes.",coaching:"Getting to mile 22 feeling strong and then running marathon pace — this is exactly what sub-3 training looks like."},
+      {name:"Sun",type:"Recovery",desc:"6 mi very easy",rest:false,detail:"6 very easy recovery miles.",coaching:""}
+    ]
+  },
+  { title:"Week 24 · Peak Phase", badge:"Peak Training", badgeClass:"badge-red",
+    mileage:"Target: 68 miles · Maximum training load",
+    focus:"Peak week. This is as hard as the training gets. 68 miles, 10×Yasso 800s at 3:00, 24-mile long run. You will be tired. That is the point — you're building the engine for December.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Tue",type:"Easy",desc:"10 mi easy",key:false,detail:"10 miles easy.",coaching:""},
+      {name:"Wed",type:"Track: 10×Yasso",desc:"10×800m @ 3:00",key:true,detail:"2mi WU + 10×800m in 3:00 (90s jog recovery) + 2mi CD.\n\nIf you can complete all 10 at 3:00 and feel in control, sub-3 is yours.",coaching:"This is the benchmark workout of the entire cycle. Execute it well."},
+      {name:"Thu",type:"Medium Long",desc:"12 mi easy",key:false,detail:"12 miles easy.",coaching:""},
+      {name:"Fri",type:"Easy + Strength",desc:"6 mi + gym",key:false,detail:"6 miles + strength.",coaching:""},
+      {name:"Sat",type:"Long Run 24mi",desc:"24 mi w/ 12 @ MP",key:true,detail:"24 miles: first 12 easy, last 12 at marathon pace.\n\nYour longest run ever. Fueling is critical — gel every 40 minutes.",coaching:"24 miles at this fitness level means 26.2 miles on race day feels achievable."},
+      {name:"Sun",type:"Recovery",desc:"8 mi very easy",rest:false,detail:"8 very easy recovery miles.",coaching:""}
+    ]
+  },
+  { title:"Week 38 · Taper", badge:"Taper", badgeClass:"badge-blue",
+    mileage:"Target: 32 miles · Stay sharp, don't panic",
+    focus:"Two weeks to CIM. Mileage drops sharply but pace stays fast. Your fitness is locked in — trust the process. Resist the urge to cram extra miles.",
+    days:[
+      {name:"Mon",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Tue",type:"Easy + Strides",desc:"6 mi + 6 strides",key:false,detail:"6 miles easy with 6×100m strides at 5K effort.",coaching:""},
+      {name:"Wed",type:"Sharpener",desc:"4×1mi @ 6:40/mi",key:true,detail:"2mi WU + 4×1mi @ 6:40/mi (2min jog recovery) + 2mi CD. Total: ~10mi.",coaching:"Sharp, fast intervals. You're not building fitness now — you're reminding your legs what fast feels like."},
+      {name:"Thu",type:"Easy",desc:"5 mi easy",key:false,detail:"5 easy miles.",coaching:""},
+      {name:"Fri",type:"Rest",desc:"Rest",rest:true,detail:"Rest.",coaching:""},
+      {name:"Sat",type:"Final Long Run",desc:"14 mi w/ 4 @ MP",key:false,detail:"14 miles: 10 easy + 4 at marathon pace to stay sharp.",coaching:""},
+      {name:"Sun",type:"Easy Jog",desc:"3 mi easy",rest:false,detail:"Easy 3 miles. Keep it relaxed and enjoyable.",coaching:""}
+    ]
+  }
+];
+
+const doneSet = new Set(JSON.parse(localStorage.getItem('done') || '[]'));
+let currentWeek = 0;
+let selectedDay = null;
+
+function saveDone() { localStorage.setItem('done', JSON.stringify([...doneSet])); }
+
+function renderWeek(wi) {
+  currentWeek = wi;
+  const w = WEEKS[wi];
+  document.getElementById('week-title').textContent = w.title;
+  const badge = document.getElementById('week-badge');
+  badge.textContent = w.badge; badge.className = 'badge ' + w.badgeClass;
+  document.getElementById('week-mileage').textContent = w.mileage;
+  document.getElementById('week-focus').textContent = w.focus;
+  const grid = document.getElementById('week-grid');
+  grid.innerHTML = '';
+  w.days.forEach((d, i) => {
+    const key = wi + '-' + i;
+    const div = document.createElement('div');
+    div.className = 'day-cell' + (d.rest ? ' rest' : '') + (d.key ? ' key-workout' : '') + (doneSet.has(key) ? ' done' : '');
+    div.innerHTML = '<div class="day-name">' + d.name + '</div><div class="day-type">' + d.type + '</div><div class="day-desc">' + d.desc + '</div>' + (doneSet.has(key) ? '<div class="done-check">✓</div>' : '');
+    div.onclick = () => showDayDetail(wi, i);
+    grid.appendChild(div);
+  });
+  document.getElementById('workout-detail').style.display = 'none';
+  document.getElementById('dash-done-count').textContent = doneSet.size;
+}
+
+function showDayDetail(wi, di) {
+  selectedDay = {wi, di};
+  const d = WEEKS[wi].days[di];
+  document.getElementById('wd-title').textContent = d.name + ' · ' + d.type;
+  document.getElementById('wd-meta').textContent = d.desc;
+  document.getElementById('wd-desc').innerHTML = d.detail.replace(/\n\n/g, '<br><br>').replace(/\n/g, '<br>');
+  const key = wi + '-' + di;
+  const btn = document.getElementById('mark-done-btn');
+  btn.textContent = doneSet.has(key) ? '✓ Completed' : 'Mark Complete';
+  btn.style.background = doneSet.has(key) ? '#555' : '';
+  const coaching = document.getElementById('wd-coaching');
+  coaching.innerHTML = d.coaching ? '<div class="ai-msg"><div class="ai-msg-header"><div class="coach-dot"></div> Coach Note</div>' + d.coaching + '</div>' : '';
+  document.getElementById('workout-detail').style.display = 'block';
+  document.getElementById('workout-detail').scrollIntoView({behavior:'smooth', block:'nearest'});
+}
+
+function markDone() {
+  if (!selectedDay) return;
+  const key = selectedDay.wi + '-' + selectedDay.di;
+  doneSet.has(key) ? doneSet.delete(key) : doneSet.add(key);
+  saveDone();
+  renderWeek(currentWeek);
+  showDayDetail(selectedDay.wi, selectedDay.di);
+}
+
+function selectPhase(i) {
+  document.querySelectorAll('#phase-bar .phase-chip').forEach((c, j) => c.classList.toggle('active', j === i));
+  renderWeek(i);
+}
+
+// ── Navigation ────────────────────────────────────────────────────────
+const PAGES = ['dashboard','plan','activities','races','nutrition','coach'];
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  const idx = PAGES.indexOf(id);
+  if (idx >= 0) document.querySelectorAll('nav button')[idx + 1].classList.add('active');
+  if (id === 'plan') renderWeek(currentWeek);
+}
+
+// ── Nutrition ─────────────────────────────────────────────────────────
+const nutData = {
+  base: {title:"Base Phase Daily Targets", cal:"2,850", carb:"380g", pro:"155g", fat:"82g", notes:"Base phase: moderate carb intake to support aerobic development. Prioritize complex carbs (oats, rice, sweet potato) and lean protein for recovery. Increase carbs ~20% on long run days."},
+  build: {title:"Build Phase Daily Targets", cal:"3,200", carb:"440g", pro:"165g", fat:"88g", notes:"Build phase: higher carb intake to support increased mileage and tempo work. Ensure you're eating enough — under-fueling in this phase causes injury and burnout."},
+  peak: {title:"Peak Phase Daily Targets", cal:"3,500", carb:"490g", pro:"170g", fat:"95g", notes:"Peak phase: highest caloric needs of the cycle. You're running 65+ miles/week. Fuel aggressively. Iron, B12, and Vitamin D are especially important to monitor with blood tests."},
+  race: {title:"Race Week & Day Targets", cal:"3,800", carb:"550g", pro:"155g", fat:"75g", notes:"Race week: carb load starts 2 days out. Keep fat and fiber low. Race morning: 150g carbs 2.5hrs before start. Sip water and electrolytes up to the start line."}
+};
+function selectNutrition(phase) {
+  document.querySelectorAll('#nut-phase-bar .phase-chip').forEach((c, i) => c.classList.toggle('active', ['base','build','peak','race'][i] === phase));
+  const d = nutData[phase];
+  document.getElementById('nut-phase-title').textContent = d.title;
+  document.getElementById('nut-cal').textContent = d.cal;
+  document.getElementById('nut-carb').textContent = d.carb;
+  document.getElementById('nut-pro').textContent = d.pro;
+  document.getElementById('nut-fat').textContent = d.fat;
+  document.getElementById('nut-notes').textContent = d.notes;
+}
+
+// ── AI Coach chat ─────────────────────────────────────────────────────
+const SYSTEM_PROMPT = `You are a world-class marathon coach helping an athlete run sub-3:00 at the California International Marathon on December 6, 2026. 
+Athlete profile: Ran NYC Marathon 2024 in 3:29:00. Currently Week 6 of a 40-week plan, Base Building phase. Weekly mileage currently ~42 miles, building to 65-70 at peak. Lives in New York. Training includes tempo runs, Yasso 800s, marathon-pace long runs, progression runs, and strength work.
+Be specific, encouraging, and data-driven. Use real pacing numbers (sub-3 = 6:52/mi). Keep responses under 150 words. Be direct and practical.`;
+
+async function sendChat() {
+  const input = document.getElementById('chat-input');
+  const msg = input.value.trim();
+  if (!msg) return;
+  input.value = '';
+  const container = document.getElementById('chat-messages');
+  container.innerHTML += '<div class="user-msg">' + escapeHtml(msg) + '</div>';
+  const thinking = document.createElement('div');
+  thinking.className = 'thinking';
+  thinking.innerHTML = 'Coach is thinking <div class="dot-anim"><span></span><span></span><span></span></div>';
+  container.appendChild(thinking);
+  container.scrollTop = container.scrollHeight;
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: SYSTEM_PROMPT,
+        messages: [{role: 'user', content: msg}]
+      })
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Sorry, I had trouble responding. Please try again.';
+    thinking.remove();
+    container.innerHTML += '<div class="ai-msg"><div class="ai-msg-header"><div class="coach-dot"></div> Coach</div>' + reply.replace(/\n/g,'<br>') + '</div>';
+  } catch(e) {
+    thinking.remove();
+    container.innerHTML += '<div class="ai-msg"><div class="ai-msg-header"><div class="coach-dot"></div> Coach</div>Connection issue — check your network and try again.</div>';
+  }
+  container.scrollTop = container.scrollHeight;
+}
+
+function quickQ(q) { document.getElementById('chat-input').value = q; sendChat(); }
+function escapeHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+// ── Strava OAuth ──────────────────────────────────────────────────────
+let stravaToken = null;
+let stravaAthlete = null;
+
+function switchTab(name) {
+  ['setup','connect','import'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === name ? 'block' : 'none';
+    document.getElementById('tab-btn-' + t).classList.toggle('active', t === name);
+  });
+}
+
+function saveCredentials() {
+  const id = document.getElementById('client-id').value.trim();
+  const secret = document.getElementById('client-secret').value.trim();
+  if (!id || !secret) { alert('Please enter both Client ID and Client Secret.'); return; }
+  localStorage.setItem('strava_client_id', id);
+  localStorage.setItem('strava_client_secret', secret);
+  const saved = localStorage.getItem('strava_token_data');
+  if (saved) {
+    const t = JSON.parse(saved);
+    stravaToken = t.access_token;
+    stravaAthlete = t.athlete;
+    setStravaConnected();
+    return;
+  }
+  switchTab('connect');
+}
+
+function startOAuth() {
+  const clientId = localStorage.getItem('strava_client_id');
+  if (!clientId) { alert('Please save your Client ID first.'); switchTab('setup'); return; }
+  const redirectUri = encodeURIComponent(window.location.href.split('?')[0].split('#')[0]);
+  const url = 'https://www.strava.com/oauth/authorize?client_id=' + clientId + '&response_type=code&redirect_uri=' + redirectUri + '&approval_prompt=force&scope=activity:read_all';
+  document.getElementById('oauth-btn').textContent = 'Redirecting to Strava…';
+  setTimeout(() => window.location.href = url, 400);
+}
+
+async function handleOAuthCallback(code) {
+  const clientId = localStorage.getItem('strava_client_id');
+  const clientSecret = localStorage.getItem('strava_client_secret');
+  if (!clientId || !clientSecret) { showOAuthError('Client ID/Secret not found. Please complete Step 1 first.'); return; }
+  document.getElementById('oauth-btn').textContent = 'Exchanging token…';
+  document.getElementById('oauth-btn').disabled = true;
+  try {
+    const res = await fetch('https://www.strava.com/oauth/token', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({client_id: clientId, client_secret: clientSecret, code: code, grant_type: 'authorization_code'})
+    });
+    const data = await res.json();
+    if (data.access_token) {
+      stravaToken = data.access_token;
+      stravaAthlete = data.athlete;
+      localStorage.setItem('strava_token_data', JSON.stringify({access_token: stravaToken, athlete: stravaAthlete}));
+      window.history.replaceState({}, document.title, window.location.pathname);
+      setStravaConnected();
+    } else {
+      showOAuthError('Token exchange failed: ' + (data.message || 'Unknown error. Check your Client Secret.'));
+    }
+  } catch(e) {
+    showOAuthError('Network error. Make sure your Client Secret is correct.');
+  }
+}
+
+function showOAuthError(msg) {
+  const el = document.getElementById('oauth-error');
+  el.textContent = msg; el.style.display = 'block';
+  document.getElementById('oauth-btn').textContent = 'Try Again';
+  document.getElementById('oauth-btn').disabled = false;
+}
+
+function setStravaConnected() {
+  switchTab('import');
+  document.getElementById('import-locked').style.display = 'none';
+  document.getElementById('import-ready').style.display = 'block';
+  const name = stravaAthlete ? (stravaAthlete.firstname + ' ' + stravaAthlete.lastname) : 'Connected';
+  document.getElementById('athlete-name-label').textContent = name;
+  // Update dashboard card
+  document.getElementById('strava-dash-status').innerHTML = '<span style="color:var(--green);font-weight:600">✓ Connected</span> as ' + escapeHtml(name) + ' · <a href="#" onclick="showPage(\'activities\');return false">View activities →</a>';
+  fetchActivities();
+}
+
+function disconnectStrava() {
+  if (!confirm('Disconnect Strava?')) return;
+  localStorage.removeItem('strava_token_data');
+  stravaToken = null; stravaAthlete = null;
+  document.getElementById('import-ready').style.display = 'none';
+  document.getElementById('import-locked').style.display = 'block';
+  document.getElementById('strava-dash-status').innerHTML = 'Not connected. <a href="#" onclick="showPage(\'activities\');return false">Connect Strava →</a>';
+  switchTab('setup');
+}
+
+async function fetchActivities() {
+  if (!stravaToken) return;
+  document.getElementById('sync-progress').style.display = 'block';
+  document.getElementById('sync-msg').textContent = 'Fetching from Strava…';
+  animateBar(0, 50, 500);
+  try {
+    const after = Math.floor(Date.now() / 1000 - 30 * 86400);
+    const res = await fetch('https://www.strava.com/api/v3/athlete/activities?after=' + after + '&per_page=40', {
+      headers: {Authorization: 'Bearer ' + stravaToken}
+    });
+    const data = await res.json();
+    animateBar(50, 100, 300);
+    if (Array.isArray(data)) {
+      setTimeout(() => {
+        document.getElementById('sync-progress').style.display = 'none';
+        document.getElementById('sync-msg').textContent = data.length + ' activities loaded';
+        renderActivities(data);
+      }, 500);
+    } else {
+      document.getElementById('sync-msg').textContent = 'Error: ' + (data.message || 'Could not load activities. Token may have expired.');
+    }
+  } catch(e) {
+    document.getElementById('sync-msg').textContent = 'Network error fetching activities.';
+  }
+}
+
+function animateBar(from, to, dur) {
+  const bar = document.getElementById('sync-bar');
+  const start = performance.now();
+  (function step(now) {
+    const p = Math.min((now - start) / dur, 1);
+    bar.style.width = (from + (to - from) * p) + '%';
+    if (p < 1) requestAnimationFrame(step);
+  })(performance.now());
+}
+
+function m2mi(m) { return (m / 1609.34).toFixed(1); }
+function spd2pace(v) {
+  if (!v) return '–';
+  const spm = (1 / v) / 1609.34;
+  const min = Math.floor(spm / 60), sec = Math.round(spm % 60);
+  return min + ':' + String(sec).padStart(2,'0') + '/mi';
+}
+function fmtDur(s) {
+  const h = Math.floor(s/3600), m = Math.floor((s%3600)/60);
+  return h ? h+'h '+m+'m' : m+'m';
+}
+function fmtDate(d) { return new Date(d).toLocaleDateString('en-US',{month:'short',day:'numeric',weekday:'short'}); }
+
+function matchType(act) {
+  const dist = act.distance / 1609.34;
+  const dow = new Date(act.start_date_local).toLocaleDateString('en-US',{weekday:'long'});
+  const type = (act.type || '').toLowerCase();
+  if (type.includes('weight') || type.includes('strength')) return 'Strength';
+  if (type.includes('ride') || type.includes('cycling')) return 'Cross-Train';
+  if (type.includes('swim')) return 'Cross-Train';
+  if (!type.includes('run')) return null;
+  if (dist >= 18) return 'Long Run';
+  if (dist >= 12) { if (dow === 'Saturday') return 'Long Run'; return 'Medium Long'; }
+  const pace = act.average_speed ? (1/act.average_speed)/1609.34*60 : 99;
+  if (dist >= 7 && pace < 7.3) return 'Tempo';
+  if (dist >= 8 && pace < 7.5) return 'Marathon Pace';
+  if (dist >= 5) return 'Easy Run';
+  if (dist >= 3) return 'Recovery Run';
+  return null;
+}
+
+const matchBadge = {'Long Run':'badge-blue','Tempo':'badge-amber','Marathon Pace':'badge-amber','Easy Run':'badge-green','Recovery Run':'badge-gray','Medium Long':'badge-blue','Strength':'badge-gray','Cross-Train':'badge-blue'};
+
+function renderActivities(acts) {
+  const container = document.getElementById('activities-container');
+  const runs = acts.filter(a => {
+    const t = (a.type||'').toLowerCase();
+    return t.includes('run') || t.includes('ride') || t.includes('weight') || t.includes('swim');
+  });
+  if (!runs.length) { container.innerHTML = '<div style="text-align:center;padding:20px;color:var(--muted);font-size:14px">No activities found in the last 30 days.</div>'; return; }
+  container.innerHTML = '';
+  runs.slice(0,20).forEach(act => {
+    const match = matchType(act);
+    const t = (act.type||'').toLowerCase();
+    const icon = t.includes('ride') ? '🚴' : t.includes('weight') || t.includes('strength') ? '🏋️' : t.includes('swim') ? '🏊' : '🏃';
+    const div = document.createElement('div');
+    div.className = 'activity ' + (match ? 'matched' : 'unmatched');
+    div.innerHTML = '<div class="act-icon">' + icon + '</div>'
+      + '<div class="act-meta"><div class="act-name">' + escapeHtml(act.name) + '</div>'
+      + '<div class="act-stats">' + fmtDate(act.start_date_local) + ' · ' + m2mi(act.distance) + ' mi · ' + fmtDur(act.moving_time) + ' · ' + spd2pace(act.average_speed) + (act.average_heartrate ? ' · HR ' + Math.round(act.average_heartrate) : '') + '</div></div>'
+      + '<div class="act-actions">'
+      + (match ? '<span class="badge ' + (matchBadge[match]||'badge-gray') + '">' + match + '</span>' : '<span class="badge badge-gray">Unmatched</span>')
+      + '<button class="btn btn-outline btn-sm" onclick="getFeedback(' + act.id + ',\'' + escapeHtml(act.name).replace(/'/g,"\\'") + '\',' + m2mi(act.distance) + ',' + act.moving_time + ',\'' + spd2pace(act.average_speed) + '\',' + (act.average_heartrate||0) + ',\'' + (match||'Run') + '\')">Feedback</button>'
+      + '</div>';
+    container.appendChild(div);
+  });
+}
+
+function matchAll() { fetchActivities(); }
+
+async function getFeedback(id, name, dist, dur, pace, hr, type) {
+  const existing = document.getElementById('fb-' + id);
+  if (existing) { existing.remove(); return; }
+  const container = document.getElementById('activities-container');
+  const allActs = container.querySelectorAll('.activity');
+  let insertAfter = null;
+  allActs.forEach(el => { if (el.querySelector('.act-name') && el.querySelector('.act-name').textContent === name) insertAfter = el; });
+  const thinking = document.createElement('div');
+  thinking.className = 'thinking'; thinking.id = 'fb-' + id;
+  thinking.innerHTML = 'Analyzing workout <div class="dot-anim"><span></span><span></span><span></span></div>';
+  if (insertAfter) insertAfter.after(thinking); else container.appendChild(thinking);
+  const prompt = 'Analyze this Strava activity for a sub-3:00 marathon athlete (current fitness ~3:12 equivalent, Week 6 base building phase, 40-week plan):\nActivity: ' + name + ' (' + type + ')\nDistance: ' + dist + ' miles | Duration: ' + Math.floor(dur/60) + 'min | Pace: ' + pace + ' | Avg HR: ' + (hr||'not recorded') + '\n\nWas the pace/effort appropriate? Any concerns or positives? Be specific and direct. Under 120 words.';
+  try {
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({model:'claude-sonnet-4-20250514', max_tokens:1000, system:'You are a concise marathon coach. Give direct, data-driven workout feedback. No fluff.', messages:[{role:'user',content:prompt}]})
+    });
+    const data = await res.json();
+    const reply = data.content?.[0]?.text || 'Could not generate feedback.';
+    thinking.className = 'ai-msg'; thinking.id = 'fb-' + id;
+    thinking.innerHTML = '<div class="ai-msg-header"><div class="coach-dot"></div> Coach · ' + escapeHtml(name) + '</div>' + reply.replace(/\n/g,'<br>') + '<br><br><button class="btn btn-outline btn-sm" onclick="document.getElementById(\'fb-' + id + '\').remove()">Dismiss</button>';
+  } catch(e) { thinking.remove(); }
+}
+
+// ── Countdown & init ─────────────────────────────────────────────────
+function updateCountdown() {
+  const days = Math.ceil((new Date('2026-12-06') - new Date()) / 86400000);
+  document.getElementById('countdown-days').textContent = days;
+  document.getElementById('cim-days-badge').textContent = days + ' days away';
+}
+
+function init() {
+  updateCountdown();
+  renderWeek(0);
+  // Restore Strava if saved
+  const saved = localStorage.getItem('strava_token_data');
+  if (saved) {
+    const t = JSON.parse(saved);
+    stravaToken = t.access_token;
+    stravaAthlete = t.athlete;
+  }
+  const cid = localStorage.getItem('strava_client_id');
+  const cs = localStorage.getItem('strava_client_secret');
+  if (cid) document.getElementById('client-id').value = cid;
+  // Handle OAuth callback
+  const code = new URLSearchParams(window.location.search).get('code');
+  const error = new URLSearchParams(window.location.search).get('error');
+  if (error) {
+    showPage('activities'); switchTab('connect');
+    showOAuthError('Strava authorization was denied. Please try again.');
+    window.history.replaceState({}, document.title, window.location.pathname);
+  } else if (code) {
+    showPage('activities'); switchTab('connect');
+    handleOAuthCallback(code);
+  } else if (stravaToken) {
+    setStravaConnected();
+  }
+}
+
+init();
+</script>
+</body>
+</html>
